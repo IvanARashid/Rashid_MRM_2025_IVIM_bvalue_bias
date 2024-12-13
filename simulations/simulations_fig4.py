@@ -13,15 +13,15 @@ uvec_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients
 uvec_fname = "xyz.bvec"
 uvec_file = os.path.join(uvec_path, uvec_fname)
 
-resolution_lst = np.round(np.linspace(2,10,9)*1e-3, decimals=7)
+resolution_lst = np.round(np.linspace(1,4,13)*1e-3, decimals=7)
 
 sequence_config = {"xres" : 2e-3,
                 "yres" : 2e-3,
                 "zres" : 4e-3,
                 "crushers" : True,
-                "optimal" : True,
+                "optimal" : False,
                 "all_crushers" : True,
-                "only_crush_when_needed" : True,
+                "only_crush_when_needed" : False,
 				"qc" : False}
 
 def main1(sequence_config=sequence_config, save_path=save_path, uvec_file=uvec_file, resolution_list=resolution_lst):
