@@ -1227,7 +1227,7 @@ axs[1,0].set_ylim([9.25, 10.75])
 # Inset
 f_pwd_avg_lines = [f_reference*100, f_u_xyz_best*100, f_i_xyz_best*100, f_c_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100, f_c_xyz_antipodal_best*100]
 f_areas = [f_u_best*100, f_i_best*100, f_c_best*100]
-fig_3_inset(axs[1,0], z*1e3, pwd_avg_lines=f_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 4), ylim=(9.9, 10.1))
+fig_3_inset(axs[1,0], z*1e3, pwd_avg_lines=f_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 6), ylim=(9.95, 10.05))
 
 ### D*
 # Nominal
@@ -1267,7 +1267,7 @@ axs[1,1].set_ylim([15, 25])
 # Inset
 Dstar_pwd_avg_lines = [Dstar_reference, Dstar_u_xyz_best, Dstar_i_xyz_best, Dstar_c_xyz_best, Dstar_u_xyz_antipodal_best, Dstar_i_xyz_antipodal_best, Dstar_c_xyz_antipodal_best]
 Dstar_areas = [Dstar_u_best, Dstar_i_best, Dstar_c_best]
-fig_3_inset(axs[1,1], z*1e3, pwd_avg_lines=Dstar_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 4), ylim=(18, 22))
+fig_3_inset(axs[1,1], z*1e3, pwd_avg_lines=Dstar_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 6), ylim=(19.5, 20.5))
 
 ### D
 # Nominal
@@ -1307,7 +1307,7 @@ axs[1,2].set_ylim([0.95,1.05])
 # Inset
 D_pwd_avg_lines = [D_reference, D_u_xyz_best, D_i_xyz_best, D_c_xyz_best, D_u_xyz_antipodal_best, D_i_xyz_antipodal_best, D_c_xyz_antipodal_best]
 D_areas = [D_u_best, D_i_best, D_c_best]
-fig_3_inset(axs[1,2], z*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 4), ylim=(0.99, 1.01))
+fig_3_inset(axs[1,2], z*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 6), ylim=(0.995, 1.005))
 
 #fig.suptitle("Well-designed sequence")
 #fig.legend(loc=(.09, -.005), ncols=4, frameon=False)
