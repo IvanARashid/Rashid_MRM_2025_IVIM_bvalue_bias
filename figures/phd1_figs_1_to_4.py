@@ -1018,13 +1018,13 @@ path_best = os.path.join(save_path, "20241101", folder_best_case)
 path_worst = os.path.join(save_path, "20241101", folder_worst_case)
 
 # Froeling 200dir sets
-f_u_worst, Dstar_u_worst, D_u_worst, bvals_nom_u_worst, minimum_bvalues_u_worst_z, maximum_bvalues_u_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="uncorrected", angles="froeling_200", xyres=xy, zres=z)
-f_i_worst, Dstar_i_worst, D_i_worst, bvals_nom_i_worst, minimum_bvalues_i_worst_z, maximum_bvalues_i_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="imaging_corrected", angles="froeling_200", xyres=xy, zres=z)
-f_c_worst, Dstar_c_worst, D_c_worst, bvals_nom_c_worst, minimum_bvalues_c_worst_z, maximum_bvalues_c_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="crossterm_corrected", angles="froeling_200", xyres=xy, zres=z)
+#f_u_worst, Dstar_u_worst, D_u_worst, bvals_nom_u_worst, minimum_bvalues_u_worst_z, maximum_bvalues_u_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="uncorrected", angles="froeling_200", xyres=xy, zres=z)
+#f_i_worst, Dstar_i_worst, D_i_worst, bvals_nom_i_worst, minimum_bvalues_i_worst_z, maximum_bvalues_i_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="imaging_corrected", angles="froeling_200", xyres=xy, zres=z)
+#f_c_worst, Dstar_c_worst, D_c_worst, bvals_nom_c_worst, minimum_bvalues_c_worst_z, maximum_bvalues_c_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="crossterm_corrected", angles="froeling_200", xyres=xy, zres=z)
 
-f_u_best, Dstar_u_best, D_u_best, bvals_nom_u_best, minimum_bvalues_u_best_z, maximum_bvalues_u_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="uncorrected", angles="froeling_200", xyres=xy, zres=z)
-f_i_best, Dstar_i_best, D_i_best, bvals_nom_i_best, minimum_bvalues_i_best_z, maximum_bvalues_i_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="imaging_corrected", angles="froeling_200", xyres=xy, zres=z)
-f_c_best, Dstar_c_best, D_c_best, bvals_nom_c_best, minimum_bvalues_c_best_z, maximum_bvalues_c_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="crossterm_corrected", angles="froeling_200", xyres=xy, zres=z)
+#f_u_best, Dstar_u_best, D_u_best, bvals_nom_u_best, minimum_bvalues_u_best_z, maximum_bvalues_u_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="uncorrected", angles="froeling_200", xyres=xy, zres=z)
+#f_i_best, Dstar_i_best, D_i_best, bvals_nom_i_best, minimum_bvalues_i_best_z, maximum_bvalues_i_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="imaging_corrected", angles="froeling_200", xyres=xy, zres=z)
+#f_c_best, Dstar_c_best, D_c_best, bvals_nom_c_best, minimum_bvalues_c_best_z, maximum_bvalues_c_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="crossterm_corrected", angles="froeling_200", xyres=xy, zres=z)
 
 # Worst
 f_u_xyz_worst, Dstar_u_xyz_worst, D_u_xyz_worst = powder_average_all_simulation_logs_new(path_worst, correction="uncorrected", angles="xyz", xyres=xy, zres=z) 
@@ -1076,6 +1076,10 @@ ls_blue = (0, (3,6))
 ls_orange = (4.5, (3,6))
 ls_green = (6, (3,6))
 
+f_reference = np.array([10*1e-2 for i in range(len(z))])
+Dstar_reference = np.array([20 for i in range(len(z))])
+D_reference = np.array([1 for i in range(len(z))])
+
 linestyles = [ls_nominal, ls_blue, ls_orange, ls_green, "-", "-", "-"]
 # Plot results
 fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(10,6), sharex=True, tight_layout=True)
@@ -1086,7 +1090,8 @@ alpha_lines = 1
 ###### Worst-case
 ### f
 # Nominal
-axs[0,0].plot(z*1e3, f_u_worst[:,1]*100, color="black", label="Reference", ls=(0, (2, 5)), lw=2)
+#axs[0,0].plot(z*1e3, f_u_worst[:,1]*100, color="black", label="Reference", ls=(0, (2, 5)), lw=2)
+axs[0,0].plot(z*1e3, f_reference*100, color="black", label="Reference", ls=(0, (2, 5)), lw=2)
 # Uncorrected
 #axs[0,0].fill_between(x=z*1e3, y1=f_u_worst[:,0]*100, y2=f_u_worst[:,2]*100, facecolor="tab:blue", alpha=alpha_area, ls="", label="Uncorrected")
 #axs[0,0].fill_between(x=z*1e3, y1=f_u_worst[:,0]*100, y2=f_u_worst[:,2]*100, color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
@@ -1119,7 +1124,8 @@ axs[0,0].set_ylim([9.25, 10.75])
 
 ### D*
 # Nominal
-axs[0,1].plot(z*1e3, Dstar_u_worst[:,1], color="black", ls=(0, (2, 5)), lw=2)
+#axs[0,1].plot(z*1e3, Dstar_u_worst[:,1], color="black", ls=(0, (2, 5)), lw=2)
+axs[0,1].plot(z*1e3, Dstar_reference, color="black", ls=(0, (2, 5)), lw=2)
 # Uncorrected
 #axs[0,1].fill_between(x=z*1e3, y1=Dstar_u_worst[:,0], y2=Dstar_u_worst[:,2], facecolor="tab:blue", alpha=alpha_area, ls="")
 #axs[0,1].fill_between(x=z*1e3, y1=Dstar_u_worst[:,0], y2=Dstar_u_worst[:,2], color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
@@ -1151,7 +1157,7 @@ axs[0,1].set_ylim([15, 25])
 
 ### D
 # Nominal
-axs[0,2].plot(z*1e3, D_u_worst[:,1], color="black", ls=(0, (2, 5)), lw=2)
+axs[0,2].plot(z*1e3, D_reference, color="black", ls=(0, (2, 5)), lw=2)
 # Uncorrected
 #axs[0,2].fill_between(x=z*1e3, y1=D_u_worst[:,0], y2=D_u_worst[:,2], facecolor="tab:blue", alpha=alpha_area, ls="")
 #axs[0,2].fill_between(x=z*1e3, y1=D_u_worst[:,0], y2=D_u_worst[:,2], color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
@@ -1185,7 +1191,7 @@ axs[0,2].set_xlim(2, 10)
 ###### Best-case
 ### f
 # Nominal
-axs[1,0].plot(z*1e3, f_u_best[:,1]*100, color="black", ls=(0, (2,5)), lw=2)
+axs[1,0].plot(z*1e3, f_reference*1e2, color="black", ls=(0, (2,5)), lw=2)
 # Uncorrected
 #axs[1,0].fill_between(x=z*1e3, y1=f_u_best[:,0]*100, y2=f_u_best[:,2]*100, facecolor="tab:blue", alpha=alpha_area, ls="")
 #axs[1,0].fill_between(x=z*1e3, y1=f_u_best[:,0]*100, y2=f_u_best[:,2]*100, color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
@@ -1219,13 +1225,13 @@ axs[1,0].set_ylabel("$f$ [\%]")
 axs[1,0].set_xlabel("Slice thickness [mm]")
 axs[1,0].set_ylim([9.25, 10.75])
 # Inset
-f_pwd_avg_lines = [f_u_best[:,1]*100, f_u_xyz_best*100, f_i_xyz_best*100, f_c_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100, f_c_xyz_antipodal_best*100]
+f_pwd_avg_lines = [f_reference*100, f_u_xyz_best*100, f_i_xyz_best*100, f_c_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100, f_c_xyz_antipodal_best*100]
 f_areas = [f_u_best*100, f_i_best*100, f_c_best*100]
 fig_3_inset(axs[1,0], z*1e3, pwd_avg_lines=f_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 4), ylim=(9.9, 10.1))
 
 ### D*
 # Nominal
-axs[1,1].plot(z*1e3, Dstar_u_best[:,1], color="black", ls=(0, (2,5)), lw=2)
+axs[1,1].plot(z*1e3, Dstar_reference, color="black", ls=(0, (2,5)), lw=2)
 # Uncorrected
 #axs[1,1].fill_between(x=z*1e3, y1=Dstar_u_best[:,0], y2=Dstar_u_best[:,2], facecolor="tab:blue", alpha=alpha_area, ls="")
 #axs[1,1].fill_between(x=z*1e3, y1=Dstar_u_best[:,0], y2=Dstar_u_best[:,2], color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
@@ -1259,13 +1265,13 @@ axs[1,1].set_ylabel("$D$* [µm$^2$/ms]")
 axs[1,1].set_xlabel("Slice thickness [mm]")
 axs[1,1].set_ylim([15, 25])
 # Inset
-Dstar_pwd_avg_lines = [Dstar_u_best[:,1], Dstar_u_xyz_best, Dstar_i_xyz_best, Dstar_c_xyz_best, Dstar_u_xyz_antipodal_best, Dstar_i_xyz_antipodal_best, Dstar_c_xyz_antipodal_best]
+Dstar_pwd_avg_lines = [Dstar_reference, Dstar_u_xyz_best, Dstar_i_xyz_best, Dstar_c_xyz_best, Dstar_u_xyz_antipodal_best, Dstar_i_xyz_antipodal_best, Dstar_c_xyz_antipodal_best]
 Dstar_areas = [Dstar_u_best, Dstar_i_best, Dstar_c_best]
 fig_3_inset(axs[1,1], z*1e3, pwd_avg_lines=Dstar_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 4), ylim=(18, 22))
 
 ### D
 # Nominal
-axs[1,2].plot(z*1e3, D_u_best[:,1], color="black", ls=(0, (2,5)), lw=2)
+axs[1,2].plot(z*1e3, D_reference, color="black", ls=(0, (2,5)), lw=2)
 # Uncorrected
 #axs[1,2].fill_between(x=z*1e3, y1=D_u_best[:,0], y2=D_u_best[:,2], facecolor="tab:blue", alpha=alpha_area, ls="")
 #axs[1,2].fill_between(x=z*1e3, y1=D_u_best[:,0], y2=D_u_best[:,2], color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
@@ -1299,7 +1305,7 @@ axs[1,2].set_ylabel("$D$ [µm$^2$/ms]")
 axs[1,2].set_xlabel("Slice thickness [mm]")
 axs[1,2].set_ylim([0.95,1.05])
 # Inset
-D_pwd_avg_lines = [D_u_best[:,1], D_u_xyz_best, D_i_xyz_best, D_c_xyz_best, D_u_xyz_antipodal_best, D_i_xyz_antipodal_best, D_c_xyz_antipodal_best]
+D_pwd_avg_lines = [D_reference, D_u_xyz_best, D_i_xyz_best, D_c_xyz_best, D_u_xyz_antipodal_best, D_i_xyz_antipodal_best, D_c_xyz_antipodal_best]
 D_areas = [D_u_best, D_i_best, D_c_best]
 fig_3_inset(axs[1,2], z*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 4), ylim=(0.99, 1.01))
 
@@ -1751,5 +1757,3 @@ fig.suptitle("IVIM parameter ranges vs. in-plane resolution", x=.53, y=1.02)
 
 #fig.savefig(os.path.join(fig_save_path, "fig4.pdf"), bbox_inches="tight")
 # %% Figure 4 20241213
-
-
