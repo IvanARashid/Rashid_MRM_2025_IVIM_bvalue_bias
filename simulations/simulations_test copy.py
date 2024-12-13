@@ -2,7 +2,7 @@
 import sys
 sys.path.append(".")
 import numpy as np
-import simulate_pulse_sequences
+import dMRItools.simulate_pulse_sequences as simulate_pulse_sequences
 import os
 import multiprocessing as mp
 import copy

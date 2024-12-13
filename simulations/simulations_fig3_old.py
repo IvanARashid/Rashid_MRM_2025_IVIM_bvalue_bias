@@ -1,5 +1,5 @@
 import numpy as np
-import simulate_pulse_sequences
+import dMRItools.simulate_pulse_sequences as simulate_pulse_sequences
 import sys
 import os
 import multiprocessing as mp

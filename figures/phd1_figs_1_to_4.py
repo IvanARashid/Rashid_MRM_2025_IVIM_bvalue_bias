@@ -2,10 +2,11 @@
 
 import sys
 sys.path.append("..")
+sys.path.append("..\simulations")
 
 
 from dMRItools import waveforms
-from ge_tools import calculate_b_for_plotter_data, ge_plotter
+from dMRItools import simulate_pulse_sequences
 import numpy as np
 import os
 import matplotlib.pyplot as plt
@@ -15,7 +16,7 @@ import mpl_toolkits.mplot3d
 
 from dMRItools import bval_calc_tools
 
-from IAR_LundUniversity import ivim_fit_method_biexp
+from fitting_algorithms import ivim_fit_method_biexp
 from dipy.core.gradients import gradient_table
 
 plt.rcParams["text.usetex"] = True
@@ -55,7 +56,7 @@ class Arrow3D(matplotlib.patches.FancyArrowPatch):
 
 def read_simulation_log_old(filename, nominal_bvalues=nominal_bvalues, ax=False, alpha=0.2, label=None, color="red"):
     # Read the file
-    worst_bvalues, worst_angles, bvals_nom = calculate_b_for_plotter_data.find_worst_case_waveforms(save_path, filename, plot=False)
+    worst_bvalues, worst_angles, bvals_nom = bval_calc_tools.find_worst_case_waveforms(save_path, filename, plot=False)
     #print(worst_bvalues[:,:])
 
     # Get the b-value arrays
@@ -71,8 +72,8 @@ def read_simulation_log_old(filename, nominal_bvalues=nominal_bvalues, ax=False,
 
     # Simulate signals
     Dstar = 0.03
-    signals_lower = calculate_b_for_plotter_data.ivim_signal(lower_b, Dstar=Dstar)
-    signals_upper = calculate_b_for_plotter_data.ivim_signal(upper_b, Dstar=Dstar)
+    signals_lower = bval_calc_tools.ivim_signal(lower_b, Dstar=Dstar)
+    signals_upper = bval_calc_tools.ivim_signal(upper_b, Dstar=Dstar)
 
     if ax:
         ax.plot(nominal_b, signals_lower, ls="")
@@ -83,7 +84,7 @@ def read_simulation_log_old(filename, nominal_bvalues=nominal_bvalues, ax=False,
 
 def read_simulation_log(filename, nominal_bvalues=nominal_bvalues, ax=False, alpha=0.2, label=None, color="red"):
     # Read the file
-    worst_bvalues, worst_angles, bvals_nom = calculate_b_for_plotter_data.find_worst_case_waveforms_uvecs(save_path, filename, plot=False)
+    worst_bvalues, worst_angles, bvals_nom = simulate_pulse_sequences.find_worst_case_waveforms_uvecs(save_path, filename, plot=False)
     #print(worst_bvalues[:,:])
 
     # Get the b-value arrays
@@ -99,8 +100,8 @@ def read_simulation_log(filename, nominal_bvalues=nominal_bvalues, ax=False, alp
 
     # Simulate signals
     Dstar = 0.02
-    signals_lower = calculate_b_for_plotter_data.ivim_signal(lower_b, Dstar=Dstar)
-    signals_upper = calculate_b_for_plotter_data.ivim_signal(upper_b, Dstar=Dstar)
+    signals_lower = simulate_pulse_sequences.ivim_signal(lower_b, Dstar=Dstar)
+    signals_upper = simulate_pulse_sequences.ivim_signal(upper_b, Dstar=Dstar)
 
     if ax:
         ax.plot(nominal_b, signals_lower, ls="")
@@ -131,7 +132,7 @@ def read_all_generic_simulation_logs(path, correction="uncorrected", angles="ndi
         fname = f"{correction}_{angles}_xy{xyres[idx]}_z{zres[idx]}"
         
         # Get the worst bvalues, worst angles, and nominal bvalues
-        worst_bvalues, worst_angles, bvals_nom = calculate_b_for_plotter_data.find_worst_case_waveforms(path, fname, plot=False)
+        worst_bvalues, worst_angles, bvals_nom = simulate_pulse_sequences.find_worst_case_waveforms(path, fname, plot=False)
 
         # Get the minimum and maximum b50, 200, and 800
         minimum_bvalues[idx, 0] = worst_bvalues[0, np.where(bvals_nom==0)[0][0]]
@@ -146,9 +147,9 @@ def read_all_generic_simulation_logs(path, correction="uncorrected", angles="ndi
 
 
         # Calculate the signals 
-        signals_nominal = calculate_b_for_plotter_data.ivim_signal(bvals_nom, f=0.1, Dstar=20e-3, D=1e-3)
-        signals_lower = calculate_b_for_plotter_data.ivim_signal(worst_bvalues[0,:], f=0.1, Dstar=20e-3, D=1e-3)
-        signals_upper = calculate_b_for_plotter_data.ivim_signal(worst_bvalues[1,:], f=0.1, Dstar=20e-3, D=1e-3)
+        signals_nominal = simulate_pulse_sequences.ivim_signal(bvals_nom, f=0.1, Dstar=20e-3, D=1e-3)
+        signals_lower = simulate_pulse_sequences.ivim_signal(worst_bvalues[0,:], f=0.1, Dstar=20e-3, D=1e-3)
+        signals_upper = simulate_pulse_sequences.ivim_signal(worst_bvalues[1,:], f=0.1, Dstar=20e-3, D=1e-3)
 
         ### Perform parameter estimations
         # Construct gradient table
@@ -202,7 +203,7 @@ def read_all_generic_simulation_logs_uvecs(path, correction="uncorrected", angle
         fname = f"{correction}_{angles}_xy{xyres[idx]}_z{zres[idx]}"
         
         # Get the worst bvalues, worst angles, and nominal bvalues
-        worst_bvalues, worst_angles, bvals_nom = calculate_b_for_plotter_data.find_worst_case_waveforms_uvecs(path, fname, plot=False)
+        worst_bvalues, worst_angles, bvals_nom = simulate_pulse_sequences.find_worst_case_waveforms_uvecs(path, fname, plot=False)
 
         # Get the minimum and maximum b50, 200, and 800
         minimum_bvalues[idx, 0] = worst_bvalues[0, np.where(bvals_nom==0)[0][0]]
@@ -217,9 +218,9 @@ def read_all_generic_simulation_logs_uvecs(path, correction="uncorrected", angle
 
 
         # Calculate the signals 
-        signals_nominal = calculate_b_for_plotter_data.ivim_signal(bvals_nom, f=0.1, Dstar=20e-3, D=1e-3)
-        signals_lower = calculate_b_for_plotter_data.ivim_signal(worst_bvalues[0,:], f=0.1, Dstar=20e-3, D=1e-3)
-        signals_upper = calculate_b_for_plotter_data.ivim_signal(worst_bvalues[1,:], f=0.1, Dstar=20e-3, D=1e-3)
+        signals_nominal = simulate_pulse_sequences.ivim_signal(bvals_nom, f=0.1, Dstar=20e-3, D=1e-3)
+        signals_lower = simulate_pulse_sequences.ivim_signal(worst_bvalues[0,:], f=0.1, Dstar=20e-3, D=1e-3)
+        signals_upper = simulate_pulse_sequences.ivim_signal(worst_bvalues[1,:], f=0.1, Dstar=20e-3, D=1e-3)
 
         ### Perform parameter estimations
         # Construct gradient table
@@ -360,16 +361,16 @@ powder_average_xyz_antipodal_bad = r"20241101\allCrushers_sequence\crossterm_cor
 #powder_average_GE_16_optimal = r"optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_GE_16_xy0.001_z0.001"
 #powder_average_GE_16_bad = r"allCrushers_sequence\uncorrected_GE_16_xy0.001_z0.001"
 
-#worst_bvalues, worst_angles = calculate_b_for_plotter_data.find_worst_case_waveforms(save_path, file_imaging, plot=False)
+#worst_bvalues, worst_angles = simulate_pulse_sequences.find_worst_case_waveforms(save_path, file_imaging, plot=False)
 #lower_b = np.hstack((worst_bvalues[0][-1], worst_bvalues[0][0:-1]))
 #upper_b = np.hstack((worst_bvalues[1][-1], worst_bvalues[1][0:-1]))
 #nominal_bvalues = np.array(nominal_bvalues)
 #nominal_b = np.hstack((nominal_bvalues[-1], nominal_bvalues[0:-1]))
 
 #Dstar = 0.03
-#signals_lower = calculate_b_for_plotter_data.ivim_signal(lower_b, Dstar=Dstar)
-#signals_upper = calculate_b_for_plotter_data.ivim_signal(upper_b, Dstar=Dstar)
-#signals_nominal = calculate_b_for_plotter_data.ivim_signal(nominal_b, Dstar=Dstar)
+#signals_lower = simulate_pulse_sequences.ivim_signal(lower_b, Dstar=Dstar)
+#signals_upper = simulate_pulse_sequences.ivim_signal(upper_b, Dstar=Dstar)
+#signals_nominal = simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=Dstar)
 #nominal_b = np.hstack((nominal_bvalues[-1], nominal_bvalues[0:-1]))
 nominal_b = np.flip(np.array(nominal_bvalues))
 
@@ -379,7 +380,7 @@ lw = 1
 def fig1_subplot(uncorrected_fname, fig, ax_column, plot_title, sequence_design, labels):
     ax = axs[1, ax_column]
 
-    ax.plot(nominal_b, calculate_b_for_plotter_data.ivim_signal(nominal_b, Dstar=0.02), color="black", label=labels[0], linewidth=1, ls="dotted")
+    ax.plot(nominal_b, simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=0.02), color="black", label=labels[0], linewidth=1, ls="dotted")
     uncorrected_lower, uncorrected_upper = read_simulation_log(uncorrected_fname, ax=None, label="Uncorrected", alpha=0.2)
     #imaging_corrected_lower, imaging_corrected_upper = read_simulation_log(imaging_fname, ax=None, label="Corrected for imaging", color="yellow", alpha=0.2)
     #crossterm_corrected_lower, crossterm_corrected_upper = read_simulation_log(cross_terms_fname, ax=None, label="Corrected for cross terms", color="green", alpha=0.4)
@@ -418,7 +419,7 @@ def fig1_subplot(uncorrected_fname, fig, ax_column, plot_title, sequence_design,
 
     # Create an inset
     axins = ax.inset_axes([0.11, 0.1, 0.3, 0.4], xlim=(-10, 80), ylim=(0.83,1.02))
-    axins.plot(nominal_b, calculate_b_for_plotter_data.ivim_signal(nominal_b, Dstar=0.02), color="black", linewidth=1, ls="dotted")
+    axins.plot(nominal_b, simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=0.02), color="black", linewidth=1, ls="dotted")
     #axins.plot(nominal_b, uncorrected_lower, ls="")
     #axins.plot(nominal_b, uncorrected_upper, ls="")
     #axins.plot(nominal_b, powder_averaged_signals, ls="-", color="tab:blue", alpha=1, lw=1)
@@ -1749,3 +1750,6 @@ fig.text(.99, .3, "Minimal cross-terms")
 fig.suptitle("IVIM parameter ranges vs. in-plane resolution", x=.53, y=1.02)
 
 #fig.savefig(os.path.join(fig_save_path, "fig4.pdf"), bbox_inches="tight")
+# %% Figure 4 20241213
+
+
