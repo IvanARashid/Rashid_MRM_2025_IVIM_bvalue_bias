@@ -1439,7 +1439,7 @@ def fig_3_inset(ax, x_axis, pwd_avg_lines, linestyles, colors, xlim, ylim, posit
 
     ax.indicate_inset_zoom(axins)
 
-colors = ["tab:blue", "tab:orange", "tab:green"]*2
+colors = ["tab:blue", "tab:orange"]*2
 colors = ["black", *colors]
 
 ls_nominal = (0, (2,5))
@@ -1454,7 +1454,7 @@ f_reference = np.array([10*1e-2 for i in range(len(z))])
 Dstar_reference = np.array([20 for i in range(len(z))])
 D_reference = np.array([1 for i in range(len(z))])
 
-linestyles = [ls_nominal, ls_blue, ls_orange, ls_green, "-", "-", "-"]
+linestyles = [ls_nominal, ls_blue, ls_orange, "-", "-"]
 # Plot results
 fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(10,6), sharex=True, tight_layout=True)
 lw = 1.5
@@ -1478,7 +1478,7 @@ axs[0,0].plot(xy*1e3, f_reference*100, color="black", label="Reference", ls=(0, 
 # Powder avgs xyz
 axs[0,0].plot(xy*1e3, f_u_xyz_worst*100, color="tab:blue", ls=ls_blue, label="[x,y,z] nominal", lw=lw)
 axs[0,0].plot(xy*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label="[x,y,z] + im", lw=lw)
-axs[0,0].plot(xy*1e3, f_c_xyz_worst*100, color="tab:green", ls=ls_green, label="[x,y,z] + im + ct", lw=lw)
+#axs[0,0].plot(xy*1e3, f_c_xyz_worst*100, color="tab:green", ls=ls_green, label="[x,y,z] + im + ct", lw=lw)
 
 #axs[0,0].plot(z*1e3, f_u_GE_6_worst*100, color="tab:blue", ls=(0, (5,5)), label="6 dir", lw=lw)
 #axs[0,0].plot(z*1e3, f_i_GE_6_worst*100, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
@@ -1490,7 +1490,7 @@ axs[0,0].plot(xy*1e3, f_c_xyz_worst*100, color="tab:green", ls=ls_green, label="
 
 axs[0,0].plot(xy*1e3, f_u_xyz_antipodal_worst*100, color="tab:blue", ls="-", label="[x,y,z,-x,-y,-z] nominal", lw=lw_straight)
 axs[0,0].plot(xy*1e3, f_i_xyz_antipodal_worst*100, color="tab:orange", ls="-", label="[x,y,z,-x,-y,-z] + im", lw=lw_straight)
-axs[0,0].plot(xy*1e3, f_c_xyz_antipodal_worst*100, color="tab:green", ls="-", label="[x,y,z,-x,-y,-z] + im + ct", lw=lw_straight)
+#axs[0,0].plot(xy*1e3, f_c_xyz_antipodal_worst*100, color="tab:green", ls="-", label="[x,y,z,-x,-y,-z] + im + ct", lw=lw_straight)
 
 # Settings
 axs[0,0].set_ylabel("$f$ [\%]")
@@ -1512,7 +1512,7 @@ axs[0,1].plot(xy*1e3, Dstar_reference, color="black", ls=(0, (2, 5)), lw=2)
 # Powder avgs xyz
 axs[0,1].plot(xy*1e3, Dstar_u_xyz_worst, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[0,1].plot(xy*1e3, Dstar_i_xyz_worst, color="tab:orange", ls=ls_orange, label="", lw=lw)
-axs[0,1].plot(xy*1e3, Dstar_c_xyz_worst, color="tab:green", ls=ls_green, label="", lw=lw)
+#axs[0,1].plot(xy*1e3, Dstar_c_xyz_worst, color="tab:green", ls=ls_green, label="", lw=lw)
 
 #axs[0,1].plot(z*1e3, Dstar_u_GE_6_worst, color="tab:blue", ls=(0, (5,5)), label="", lw=lw)
 #axs[0,1].plot(z*1e3, Dstar_i_GE_6_worst, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
@@ -1524,7 +1524,7 @@ axs[0,1].plot(xy*1e3, Dstar_c_xyz_worst, color="tab:green", ls=ls_green, label="
 
 axs[0,1].plot(xy*1e3, Dstar_u_xyz_antipodal_worst, color="tab:blue", ls="-", label="", lw=lw_straight)
 axs[0,1].plot(xy*1e3, Dstar_i_xyz_antipodal_worst, color="tab:orange", ls="-", label="", lw=lw_straight)
-axs[0,1].plot(xy*1e3, Dstar_c_xyz_antipodal_worst, color="tab:green", ls="-", label="", lw=lw_straight)
+#axs[0,1].plot(xy*1e3, Dstar_c_xyz_antipodal_worst, color="tab:green", ls="-", label="", lw=lw_straight)
 # Settings
 axs[0,1].set_ylabel("$D$* [µm$^2$/ms]")
 axs[0,1].set_ylim([14, 26])
@@ -1544,7 +1544,7 @@ axs[0,2].plot(xy*1e3, D_reference, color="black", ls=(0, (2, 5)), lw=2)
 # Powder avgs xyz
 axs[0,2].plot(xy*1e3, D_u_xyz_worst, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[0,2].plot(xy*1e3, D_i_xyz_worst, color="tab:orange", ls=ls_orange, label="", lw=lw)
-axs[0,2].plot(xy*1e3, D_c_xyz_worst, color="tab:green", ls=ls_green, label="", lw=lw)
+#axs[0,2].plot(xy*1e3, D_c_xyz_worst, color="tab:green", ls=ls_green, label="", lw=lw)
 
 #axs[0,2].plot(z*1e3, D_u_GE_6_worst, color="tab:blue", ls=(0, (5,5)), label="", lw=lw)
 #axs[0,2].plot(z*1e3, D_i_GE_6_worst, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
@@ -1556,7 +1556,7 @@ axs[0,2].plot(xy*1e3, D_c_xyz_worst, color="tab:green", ls=ls_green, label="", l
 
 axs[0,2].plot(xy*1e3, D_u_xyz_antipodal_worst, color="tab:blue", ls="-", label="", lw=lw_straight)
 axs[0,2].plot(xy*1e3, D_i_xyz_antipodal_worst, color="tab:orange", ls="-", label="", lw=lw_straight)
-axs[0,2].plot(xy*1e3, D_c_xyz_antipodal_worst, color="tab:green", ls="-", label="", lw=lw_straight)
+#axs[0,2].plot(xy*1e3, D_c_xyz_antipodal_worst, color="tab:green", ls="-", label="", lw=lw_straight)
 # Settings
 axs[0,2].set_ylabel("$D$ [µm$^2$/ms]")
 axs[0,2].set_ylim([0.94,1.06])
@@ -1578,7 +1578,7 @@ axs[1,0].plot(xy*1e3, f_reference*1e2, color="black", ls=(0, (2,5)), lw=2)
 # Powder avgs xyz
 axs[1,0].plot(xy*1e3, f_u_xyz_best*100, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[1,0].plot(xy*1e3, f_i_xyz_best*100, color="tab:orange", ls=ls_orange, label="", lw=lw)
-axs[1,0].plot(xy*1e3, f_c_xyz_best*100, color="tab:green", ls=ls_green, label="", lw=lw)
+#axs[1,0].plot(xy*1e3, f_c_xyz_best*100, color="tab:green", ls=ls_green, label="", lw=lw)
 
 #axs[1,0].plot(z*1e3, f_u_GE_6_worst*100, color="tab:blue", ls=(0, (5,5)), label="6 dir", lw=lw)
 #axs[1,0].plot(z*1e3, f_i_GE_6_worst*100, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
@@ -1590,7 +1590,7 @@ axs[1,0].plot(xy*1e3, f_c_xyz_best*100, color="tab:green", ls=ls_green, label=""
 
 axs[1,0].plot(xy*1e3, f_u_xyz_antipodal_best*100, color="tab:blue", ls="-", label="", lw=lw_straight)
 axs[1,0].plot(xy*1e3, f_i_xyz_antipodal_best*100, color="tab:orange", ls="-", label="", lw=lw_straight)
-axs[1,0].plot(xy*1e3, f_c_xyz_antipodal_best*100, color="tab:green", ls="-", label="", lw=lw_straight)
+#axs[1,0].plot(xy*1e3, f_c_xyz_antipodal_best*100, color="tab:green", ls="-", label="", lw=lw_straight)
 
 # TEST
 #axs[1,0].plot(z*1e3, f_u_xyz_antipodal_best_test*100, color="tab:red", ls="-", label="", lw=lw+1)
@@ -1599,9 +1599,8 @@ axs[1,0].set_ylabel("$f$ [\%]")
 axs[1,0].set_xlabel("In-plane resolution [mm]")
 axs[1,0].set_ylim([8.5, 11.5])
 # Inset
-f_pwd_avg_lines = [f_reference*100, f_u_xyz_best*100, f_i_xyz_best*100, f_c_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100, f_c_xyz_antipodal_best*100]
-f_areas = [f_u_best*100, f_i_best*100, f_c_best*100]
-fig_3_inset(axs[1,0], xy*1e3, pwd_avg_lines=f_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(1, 2), ylim=(9.9, 10.1))
+f_pwd_avg_lines = [f_reference*100, f_u_xyz_best*100, f_i_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100]
+fig_3_inset(axs[1,0], xy*1e3, pwd_avg_lines=f_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(1, 2), ylim=(9.95, 10.05))
 
 ### D*
 # Nominal
@@ -1618,7 +1617,7 @@ axs[1,1].plot(xy*1e3, Dstar_reference, color="black", ls=(0, (2,5)), lw=2)
 # Powder avgs xyz
 axs[1,1].plot(xy*1e3, Dstar_u_xyz_best, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[1,1].plot(xy*1e3, Dstar_i_xyz_best, color="tab:orange", ls=ls_orange, label="", lw=lw)
-axs[1,1].plot(xy*1e3, Dstar_c_xyz_best, color="tab:green", ls=ls_green, label="", lw=lw)
+#axs[1,1].plot(xy*1e3, Dstar_c_xyz_best, color="tab:green", ls=ls_green, label="", lw=lw)
 
 #axs[0,1].plot(z*1e3, Dstar_u_GE_6_best, color="tab:blue", ls=(0, (5,5)), label="", lw=lw)
 #axs[0,1].plot(z*1e3, Dstar_i_GE_6_best, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
@@ -1630,7 +1629,7 @@ axs[1,1].plot(xy*1e3, Dstar_c_xyz_best, color="tab:green", ls=ls_green, label=""
 
 axs[1,1].plot(xy*1e3, Dstar_u_xyz_antipodal_best, color="tab:blue", ls="-", label="", lw=lw_straight)
 axs[1,1].plot(xy*1e3, Dstar_i_xyz_antipodal_best, color="tab:orange", ls="-", label="", lw=lw_straight)
-axs[1,1].plot(xy*1e3, Dstar_c_xyz_antipodal_best, color="tab:green", ls="-", label="", lw=lw_straight)
+#axs[1,1].plot(xy*1e3, Dstar_c_xyz_antipodal_best, color="tab:green", ls="-", label="", lw=lw_straight)
 
 # TEST
 #axs[1,1].plot(z*1e3, Dstar_u_xyz_antipodal_best_test, color="tab:red", ls="-", label="", lw=lw+1)
@@ -1639,9 +1638,8 @@ axs[1,1].set_ylabel("$D$* [µm$^2$/ms]")
 axs[1,1].set_xlabel("In-plane resolution [mm]")
 axs[1,1].set_ylim([14, 26])
 # Inset
-Dstar_pwd_avg_lines = [Dstar_reference, Dstar_u_xyz_best, Dstar_i_xyz_best, Dstar_c_xyz_best, Dstar_u_xyz_antipodal_best, Dstar_i_xyz_antipodal_best, Dstar_c_xyz_antipodal_best]
-Dstar_areas = [Dstar_u_best, Dstar_i_best, Dstar_c_best]
-fig_3_inset(axs[1,1], xy*1e3, pwd_avg_lines=Dstar_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(1, 2), ylim=(18, 22))
+Dstar_pwd_avg_lines = [Dstar_reference, Dstar_u_xyz_best, Dstar_i_xyz_best, Dstar_u_xyz_antipodal_best, Dstar_i_xyz_antipodal_best]
+fig_3_inset(axs[1,1], xy*1e3, pwd_avg_lines=Dstar_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(1, 2), ylim=(19.5, 20.5))
 
 ### D
 # Nominal
@@ -1658,7 +1656,7 @@ axs[1,2].plot(xy*1e3, D_reference, color="black", ls=(0, (2,5)), lw=2)
 # Powder avgs xyz
 axs[1,2].plot(xy*1e3, D_u_xyz_best, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[1,2].plot(xy*1e3, D_i_xyz_best, color="tab:orange", ls=ls_orange, label="", lw=lw)
-axs[1,2].plot(xy*1e3, D_c_xyz_best, color="tab:green", ls=ls_green, label="", lw=lw)
+#axs[1,2].plot(xy*1e3, D_c_xyz_best, color="tab:green", ls=ls_green, label="", lw=lw)
 
 #axs[0,2].plot(z*1e3, D_u_GE_6_best, color="tab:blue", ls=(0, (5,5)), label="", lw=lw)
 #axs[0,2].plot(z*1e3, D_i_GE_6_best, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
@@ -1670,7 +1668,7 @@ axs[1,2].plot(xy*1e3, D_c_xyz_best, color="tab:green", ls=ls_green, label="", lw
 
 axs[1,2].plot(xy*1e3, D_u_xyz_antipodal_best, color="tab:blue", ls="-", label="", lw=lw_straight)
 axs[1,2].plot(xy*1e3, D_i_xyz_antipodal_best, color="tab:orange", ls="-", label="", lw=lw_straight)
-axs[1,2].plot(xy*1e3, D_c_xyz_antipodal_best, color="tab:green", ls="-", label="", lw=lw_straight)
+#axs[1,2].plot(xy*1e3, D_c_xyz_antipodal_best, color="tab:green", ls="-", label="", lw=lw_straight)
 
 # TEST
 #axs[1,2].plot(z*1e3, D_u_xyz_antipodal_best_test, color="tab:red", ls="-", label="", lw=lw+1)
@@ -1679,18 +1677,18 @@ axs[1,2].set_ylabel("$D$ [µm$^2$/ms]")
 axs[1,2].set_xlabel("In-plane resolution [mm]")
 axs[1,2].set_ylim([0.94,1.06])
 # Inset
-D_pwd_avg_lines = [D_reference, D_u_xyz_best, D_i_xyz_best, D_c_xyz_best, D_u_xyz_antipodal_best, D_i_xyz_antipodal_best, D_c_xyz_antipodal_best]
-D_areas = [D_u_best, D_i_best, D_c_best]
-fig_3_inset(axs[1,2], xy*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(1, 2), ylim=(0.99, 1.01))
+D_pwd_avg_lines = [D_reference, D_u_xyz_best, D_i_xyz_best, D_u_xyz_antipodal_best, D_i_xyz_antipodal_best]
+fig_3_inset(axs[1,2], xy*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(1, 2), ylim=(0.995, 1.005))
 
 #fig.suptitle("Well-designed sequence")
 #fig.legend(loc=(.09, -.005), ncols=4, frameon=False)
 #fig.legend(loc=(0, -.005), ncols=7, frameon=False)
-handles, labels = axs[0,0].get_legend_handles_labels()
-handles_reordered = [handles[1], handles[4], handles[2], handles[5], handles[3], handles[6], handles[0]]
-labels_reordered = [labels[1], labels[4], labels[2], labels[5], labels[3], labels[6], labels[0]]
+fig.legend(loc=(0.02, -.005), ncols=5, frameon=False)
+#handles, labels = axs[0,0].get_legend_handles_labels()
+#handles_reordered = [handles[1], handles[4], handles[2], handles[5], handles[3], handles[6], handles[0]]
+#labels_reordered = [labels[1], labels[4], labels[2], labels[5], labels[3], labels[6], labels[0]]
 #fig.legend(handles_reordered, labels_reordered, loc=(0.045, -.025), ncols=4, frameon=False)
-fig.legend(handles_reordered, labels_reordered, ncols=4, frameon=False, bbox_to_anchor=[0.99,0.035])
+#fig.legend(handles_reordered, labels_reordered, ncols=4, frameon=False, bbox_to_anchor=[0.99,0.035])
 #fig.tight_layout()
 #fig.text(1, .75, "Large cross-terms")
 fig.text(.99, .7, "Large cross-terms")
