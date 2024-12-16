@@ -1103,7 +1103,7 @@ axs[0,0].plot(z*1e3, f_reference*100, color="black", label="Reference", ls=(0, (
 #axs[0,0].fill_between(x=z*1e3, y1=f_c_worst[:,0]*100, y2=f_c_worst[:,2]*100, color="tab:green", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
 # Powder avgs xyz
 axs[0,0].plot(z*1e3, f_u_xyz_worst*100, color="tab:blue", ls=ls_blue, label="[x,y,z] nominal", lw=lw)
-axs[0,0].plot(z*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label="[x,y,z] + im", lw=lw)
+axs[0,0].plot(z*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label="[x,y,z] + img", lw=lw)
 #axs[0,0].plot(z*1e3, f_c_xyz_worst*100, color="tab:green", ls=ls_green, label="[x,y,z] + im + ct", lw=lw)
 
 #axs[0,0].plot(z*1e3, f_u_GE_6_worst*100, color="tab:blue", ls=(0, (5,5)), label="6 dir", lw=lw)
@@ -1115,12 +1115,12 @@ axs[0,0].plot(z*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label=
 #axs[0,0].plot(z*1e3, f_c_GE_16_worst*100, color="tab:green", ls="-", label="", lw=lw)
 
 axs[0,0].plot(z*1e3, f_u_xyz_antipodal_worst*100, color="tab:blue", ls="-", label="[x,y,z,-x,-y,-z] nominal", lw=lw_straight)
-axs[0,0].plot(z*1e3, f_i_xyz_antipodal_worst*100, color="tab:orange", ls="-", label="[x,y,z,-x,-y,-z] + im", lw=lw_straight)
+axs[0,0].plot(z*1e3, f_i_xyz_antipodal_worst*100, color="tab:orange", ls="-", label="[x,y,z,-x,-y,-z] + img", lw=lw_straight)
 #axs[0,0].plot(z*1e3, f_c_xyz_antipodal_worst*100, color="tab:green", ls="-", label="[x,y,z,-x,-y,-z] + im + ct", lw=lw_straight)
 
 # Settings
 axs[0,0].set_ylabel("$f$ [\%]")
-axs[0,0].set_ylim([9.25, 10.75])
+axs[0,0].set_ylim([9.4, 10.6])
 
 ### D*
 # Nominal
@@ -1223,7 +1223,7 @@ axs[1,0].plot(z*1e3, f_i_xyz_antipodal_best*100, color="tab:orange", ls="-", lab
 # Settings
 axs[1,0].set_ylabel("$f$ [\%]")
 axs[1,0].set_xlabel("Slice thickness [mm]")
-axs[1,0].set_ylim([9.25, 10.75])
+axs[1,0].set_ylim([9.4, 10.6])
 # Inset
 #f_pwd_avg_lines = [f_reference*100, f_u_xyz_best*100, f_i_xyz_best*100, f_c_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100, f_c_xyz_antipodal_best*100]
 f_pwd_avg_lines = [f_reference*100, f_u_xyz_best*100, f_i_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100]
@@ -1310,7 +1310,8 @@ fig_3_inset(axs[1,2], z*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyle
 #fig.suptitle("Well-designed sequence")
 #fig.legend(loc=(.09, -.005), ncols=4, frameon=False)
 #fig.legend(loc=(0, -.005), ncols=7, frameon=False)
-fig.legend(loc=(0.02, -.005), ncols=5, frameon=False)
+#fig.legend(loc=(0.02, -.005), ncols=5, frameon=False)
+fig.legend(loc=(0.015, -.005), ncols=5, frameon=False)
 handles, labels = axs[0,0].get_legend_handles_labels()
 #handles_reordered = [handles[1], handles[4], handles[2], handles[5], handles[3], handles[6], handles[0]]
 #labels_reordered = [labels[1], labels[4], labels[2], labels[5], labels[3], labels[6], labels[0]]
@@ -1477,7 +1478,7 @@ axs[0,0].plot(xy*1e3, f_reference*100, color="black", label="Reference", ls=(0, 
 #axs[0,0].fill_between(x=z*1e3, y1=f_c_worst[:,0]*100, y2=f_c_worst[:,2]*100, color="tab:green", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
 # Powder avgs xyz
 axs[0,0].plot(xy*1e3, f_u_xyz_worst*100, color="tab:blue", ls=ls_blue, label="[x,y,z] nominal", lw=lw)
-axs[0,0].plot(xy*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label="[x,y,z] + im", lw=lw)
+axs[0,0].plot(xy*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label="[x,y,z] + img", lw=lw)
 #axs[0,0].plot(xy*1e3, f_c_xyz_worst*100, color="tab:green", ls=ls_green, label="[x,y,z] + im + ct", lw=lw)
 
 #axs[0,0].plot(z*1e3, f_u_GE_6_worst*100, color="tab:blue", ls=(0, (5,5)), label="6 dir", lw=lw)
@@ -1489,7 +1490,7 @@ axs[0,0].plot(xy*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label
 #axs[0,0].plot(z*1e3, f_c_GE_16_worst*100, color="tab:green", ls="-", label="", lw=lw)
 
 axs[0,0].plot(xy*1e3, f_u_xyz_antipodal_worst*100, color="tab:blue", ls="-", label="[x,y,z,-x,-y,-z] nominal", lw=lw_straight)
-axs[0,0].plot(xy*1e3, f_i_xyz_antipodal_worst*100, color="tab:orange", ls="-", label="[x,y,z,-x,-y,-z] + im", lw=lw_straight)
+axs[0,0].plot(xy*1e3, f_i_xyz_antipodal_worst*100, color="tab:orange", ls="-", label="[x,y,z,-x,-y,-z] + img", lw=lw_straight)
 #axs[0,0].plot(xy*1e3, f_c_xyz_antipodal_worst*100, color="tab:green", ls="-", label="[x,y,z,-x,-y,-z] + im + ct", lw=lw_straight)
 
 # Settings
@@ -1683,7 +1684,8 @@ fig_3_inset(axs[1,2], xy*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyl
 #fig.suptitle("Well-designed sequence")
 #fig.legend(loc=(.09, -.005), ncols=4, frameon=False)
 #fig.legend(loc=(0, -.005), ncols=7, frameon=False)
-fig.legend(loc=(0.02, -.005), ncols=5, frameon=False)
+#fig.legend(loc=(0.02, -.005), ncols=5, frameon=False)
+fig.legend(loc=(0.015, -.005), ncols=5, frameon=False)
 #handles, labels = axs[0,0].get_legend_handles_labels()
 #handles_reordered = [handles[1], handles[4], handles[2], handles[5], handles[3], handles[6], handles[0]]
 #labels_reordered = [labels[1], labels[4], labels[2], labels[5], labels[3], labels[6], labels[0]]
