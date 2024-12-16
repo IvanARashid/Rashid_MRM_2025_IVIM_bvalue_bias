@@ -1310,7 +1310,7 @@ fig_3_inset(axs[1,2], z*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyle
 #fig.suptitle("Well-designed sequence")
 #fig.legend(loc=(.09, -.005), ncols=4, frameon=False)
 #fig.legend(loc=(0, -.005), ncols=7, frameon=False)
-fig.legend(loc=(0, -.005), ncols=5, frameon=False)
+fig.legend(loc=(0.02, -.005), ncols=5, frameon=False)
 handles, labels = axs[0,0].get_legend_handles_labels()
 #handles_reordered = [handles[1], handles[4], handles[2], handles[5], handles[3], handles[6], handles[0]]
 #labels_reordered = [labels[1], labels[4], labels[2], labels[5], labels[3], labels[6], labels[0]]
