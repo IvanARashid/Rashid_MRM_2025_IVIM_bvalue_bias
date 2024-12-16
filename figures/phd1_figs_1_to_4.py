@@ -1080,7 +1080,8 @@ f_reference = np.array([10*1e-2 for i in range(len(z))])
 Dstar_reference = np.array([20 for i in range(len(z))])
 D_reference = np.array([1 for i in range(len(z))])
 
-linestyles = [ls_nominal, ls_blue, ls_orange, "-", "-"]
+#linestyles = [ls_nominal, ls_blue, ls_orange, "-", "-"]
+linestyles = [ls_nominal, ls_blue, ls_orange, (0, (7,7)), (7, (7,7))]
 # Plot results
 fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(10,6), sharex=True, tight_layout=True)
 lw = 1.5
@@ -1114,8 +1115,8 @@ axs[0,0].plot(z*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label=
 #axs[0,0].plot(z*1e3, f_i_GE_16_worst*100, color="tab:orange", ls="-", label="", lw=lw)
 #axs[0,0].plot(z*1e3, f_c_GE_16_worst*100, color="tab:green", ls="-", label="", lw=lw)
 
-axs[0,0].plot(z*1e3, f_u_xyz_antipodal_worst*100, color="tab:blue", ls="-", label="[x,y,z,-x,-y,-z] nominal", lw=lw_straight)
-axs[0,0].plot(z*1e3, f_i_xyz_antipodal_worst*100, color="tab:orange", ls="-", label="[x,y,z,-x,-y,-z] + img", lw=lw_straight)
+axs[0,0].plot(z*1e3, f_u_xyz_antipodal_worst*100, color="tab:blue", ls=linestyles[3], label="[x,y,z,-x,-y,-z] nominal", lw=lw)
+axs[0,0].plot(z*1e3, f_i_xyz_antipodal_worst*100, color="tab:orange", ls=linestyles[4], label="[x,y,z,-x,-y,-z] + img", lw=lw)
 #axs[0,0].plot(z*1e3, f_c_xyz_antipodal_worst*100, color="tab:green", ls="-", label="[x,y,z,-x,-y,-z] + im + ct", lw=lw_straight)
 
 # Settings
@@ -1148,8 +1149,8 @@ axs[0,1].plot(z*1e3, Dstar_i_xyz_worst, color="tab:orange", ls=ls_orange, label=
 #axs[0,1].plot(z*1e3, Dstar_i_GE_16_worst, color="tab:orange", ls="-", label="", lw=lw)
 #axs[0,1].plot(z*1e3, Dstar_c_GE_16_worst, color="tab:green", ls="-", label="", lw=lw)
 
-axs[0,1].plot(z*1e3, Dstar_u_xyz_antipodal_worst, color="tab:blue", ls="-", label="", lw=lw_straight)
-axs[0,1].plot(z*1e3, Dstar_i_xyz_antipodal_worst, color="tab:orange", ls="-", label="", lw=lw_straight)
+axs[0,1].plot(z*1e3, Dstar_u_xyz_antipodal_worst, color="tab:blue", ls=linestyles[3], label="", lw=lw)
+axs[0,1].plot(z*1e3, Dstar_i_xyz_antipodal_worst, color="tab:orange", ls=linestyles[4], label="", lw=lw)
 #axs[0,1].plot(z*1e3, Dstar_c_xyz_antipodal_worst, color="tab:green", ls="-", label="", lw=lw_straight)
 # Settings
 axs[0,1].set_ylabel("$D$* [µm$^2$/ms]")
@@ -1180,8 +1181,8 @@ axs[0,2].plot(z*1e3, D_i_xyz_worst, color="tab:orange", ls=ls_orange, label="", 
 #axs[0,2].plot(z*1e3, D_i_GE_16_worst, color="tab:orange", ls="-", label="", lw=lw)
 #axs[0,2].plot(z*1e3, D_c_GE_16_worst, color="tab:green", ls="-", label="", lw=lw)
 
-axs[0,2].plot(z*1e3, D_u_xyz_antipodal_worst, color="tab:blue", ls="-", label="", lw=lw_straight)
-axs[0,2].plot(z*1e3, D_i_xyz_antipodal_worst, color="tab:orange", ls="-", label="", lw=lw_straight)
+axs[0,2].plot(z*1e3, D_u_xyz_antipodal_worst, color="tab:blue", ls=linestyles[3], label="", lw=lw_straight)
+axs[0,2].plot(z*1e3, D_i_xyz_antipodal_worst, color="tab:orange", ls=linestyles[4], label="", lw=lw_straight)
 #axs[0,2].plot(z*1e3, D_c_xyz_antipodal_worst, color="tab:green", ls="-", label="", lw=lw_straight)
 # Settings
 axs[0,2].set_ylabel("$D$ [µm$^2$/ms]")
@@ -1214,8 +1215,8 @@ axs[1,0].plot(z*1e3, f_i_xyz_best*100, color="tab:orange", ls=ls_orange, label="
 #axs[1,0].plot(z*1e3, f_i_GE_16_best*100, color="tab:orange", ls="-", label="", lw=lw)
 #axs[1,0].plot(z*1e3, f_c_GE_16_best*100, color="tab:green", ls="-", label="", lw=lw)
 
-axs[1,0].plot(z*1e3, f_u_xyz_antipodal_best*100, color="tab:blue", ls="-", label="", lw=lw_straight)
-axs[1,0].plot(z*1e3, f_i_xyz_antipodal_best*100, color="tab:orange", ls="-", label="", lw=lw_straight)
+axs[1,0].plot(z*1e3, f_u_xyz_antipodal_best*100, color="tab:blue", ls=linestyles[3], label="", lw=lw_straight)
+axs[1,0].plot(z*1e3, f_i_xyz_antipodal_best*100, color="tab:orange", ls=linestyles[4], label="", lw=lw_straight)
 #axs[1,0].plot(z*1e3, f_c_xyz_antipodal_best*100, color="tab:green", ls="-", label="", lw=lw_straight)
 
 # TEST
@@ -1254,8 +1255,8 @@ axs[1,1].plot(z*1e3, Dstar_i_xyz_best, color="tab:orange", ls=ls_orange, label="
 #axs[1,1].plot(z*1e3, Dstar_i_GE_16_best, color="tab:orange", ls="-", label="", lw=lw)
 #axs[1,1].plot(z*1e3, Dstar_c_GE_16_best, color="tab:green", ls="-", label="", lw=lw)
 
-axs[1,1].plot(z*1e3, Dstar_u_xyz_antipodal_best, color="tab:blue", ls="-", label="", lw=lw_straight)
-axs[1,1].plot(z*1e3, Dstar_i_xyz_antipodal_best, color="tab:orange", ls="-", label="", lw=lw_straight)
+axs[1,1].plot(z*1e3, Dstar_u_xyz_antipodal_best, color="tab:blue", ls=linestyles[3], label="", lw=lw_straight)
+axs[1,1].plot(z*1e3, Dstar_i_xyz_antipodal_best, color="tab:orange", ls=linestyles[4], label="", lw=lw_straight)
 #axs[1,1].plot(z*1e3, Dstar_c_xyz_antipodal_best, color="tab:green", ls="-", label="", lw=lw_straight)
 
 # TEST
@@ -1293,8 +1294,8 @@ axs[1,2].plot(z*1e3, D_i_xyz_best, color="tab:orange", ls=ls_orange, label="", l
 #axs[1,2].plot(z*1e3, D_i_GE_16_best, color="tab:orange", ls="-", label="", lw=lw)
 #axs[1,2].plot(z*1e3, D_c_GE_16_best, color="tab:green", ls="-", label="", lw=lw)
 
-axs[1,2].plot(z*1e3, D_u_xyz_antipodal_best, color="tab:blue", ls="-", label="", lw=lw_straight)
-axs[1,2].plot(z*1e3, D_i_xyz_antipodal_best, color="tab:orange", ls="-", label="", lw=lw_straight)
+axs[1,2].plot(z*1e3, D_u_xyz_antipodal_best, color="tab:blue", ls=linestyles[3], label="", lw=lw_straight)
+axs[1,2].plot(z*1e3, D_i_xyz_antipodal_best, color="tab:orange", ls=linestyles[4], label="", lw=lw_straight)
 #axs[1,2].plot(z*1e3, D_c_xyz_antipodal_best, color="tab:green", ls="-", label="", lw=lw_straight)
 
 # TEST
