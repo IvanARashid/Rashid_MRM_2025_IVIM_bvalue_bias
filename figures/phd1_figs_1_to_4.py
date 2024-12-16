@@ -822,7 +822,7 @@ def fig_2_inset(ax, x_axis, colors, xlim, ylim, position=[0.3, 0.46, 0.6, 0.5], 
 
     #for line_idx in range(len(pwd_avg_lines)):
         #axins.fill_between(x_axis, pwd_avg_lines[line_idx], color=colors[line_idx], linewidth=1, ls=linestyles[line_idx])
-    axins.plot(z*1e3, [0 for i in range(len(z))], color="black", ls="dotted", lw=1)
+    axins.plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
     
     print(colors)
 
@@ -837,7 +837,7 @@ def fig_2_inset(ax, x_axis, colors, xlim, ylim, position=[0.3, 0.46, 0.6, 0.5], 
 ### Bad
 fig, axs = plt.subplots(ncols=3, nrows=2, figsize=(10,6), sharey=True, sharex=True)
 # 50 Nominal
-axs[0,0].plot(z*1e3, [0 for i in range(len(z))], color="black", label="Nominal", ls="dotted", lw=1)
+axs[0,0].plot(z*1e3, [0 for i in range(len(z))], color="black", label="Nominal", ls=(0, (2,5)), lw=1.5)
 # 50 Uncorrected
 #axs[0,0].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 1]*100, y2=maximum_bvalues_relative_u_worst_z[:, 1]*100, label="Uncorrected", facecolor="tab:blue", ls="", alpha=alpha_area)
 #axs[0,0].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 1]*100, y2=maximum_bvalues_relative_u_worst_z[:, 1]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -854,7 +854,7 @@ axs[0,0].set_ylabel("Relative b-value deviation [\%]")
 #plot_waveform_inset(angles_worst_u, 50, axs[0,0], legend_flag=True)
 
 # 200 Nominal
-axs[0,1].plot(z*1e3, [0 for i in range(len(z))], color="black", ls="dotted", lw=lw)
+axs[0,1].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
 # 200 Uncorrected
 #axs[0,1].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 2]*100, y2=maximum_bvalues_relative_u_worst_z[:, 2]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
 #axs[0,1].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 2]*100, y2=maximum_bvalues_relative_u_worst_z[:, 2]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -869,7 +869,7 @@ axs[0,1].set_title("Nominal b = 200 s/mm$^2$")
 #plot_waveform_inset(angles_worst_u, 200, axs[0,1])
 
 # 800 Nominal
-axs[0,2].plot(z*1e3, [0 for i in range(len(z))], color="black", ls="dotted", lw=lw)
+axs[0,2].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
 # 800 Uncorrected
 #axs[0,2].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 3]*100, y2=maximum_bvalues_relative_u_worst_z[:, 3]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
 #axs[0,2].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 3]*100, y2=maximum_bvalues_relative_u_worst_z[:, 3]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -889,7 +889,7 @@ axs[0,2].set_title("Nominal b = 800 s/mm$^2$")
 ### Optimal
 #xy = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 2.75e-3, 3e-3, 3.25e-3, 3.5e-3, 3.75e-3, 4e-3])
 # 50 Nominal
-axs[1,0].plot(z*1e3, [0 for i in range(len(z))], color="black", ls="dotted", lw=lw)
+axs[1,0].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
 # 50 Uncorrected
 #axs[1,0].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 1]*100, y2=maximum_bvalues_relative_u_best_z[:, 1]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
 #axs[1,0].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 1]*100, y2=maximum_bvalues_relative_u_best_z[:, 1]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -908,7 +908,7 @@ fig_2_inset(axs[1,0], z*1e3, colors, [1, 4], [-10, 10], areas=[minimum_bvalues_r
 
 
 # 200 Nominal
-axs[1,1].plot(z*1e3, [0 for i in range(len(z))], color="black", ls="dotted", lw=lw)
+axs[1,1].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
 # 200 Uncorrected
 #axs[1,1].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 2]*100, y2=maximum_bvalues_relative_u_best_z[:, 2]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
 #axs[1,1].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 2]*100, y2=maximum_bvalues_relative_u_best_z[:, 2]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -924,7 +924,7 @@ axs[1,1].set_xlabel("Isotropic resolution [mm]")
 fig_2_inset(axs[1,1], z*1e3, colors, [1, 4], [-10, 10], areas=[minimum_bvalues_relative_i_best_z[:,2]*100, maximum_bvalues_relative_i_best_z[:,2]*100, minimum_bvalues_relative_c_best_z[:,2]*100, maximum_bvalues_relative_c_best_z[:,2]*100])
 
 # 800 Nominal
-axs[1,2].plot(z*1e3, [0 for i in range(len(z))], color="black", ls="dotted", lw=lw)
+axs[1,2].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0,(2,5)), lw=1.5)
 # 800 Uncorrected
 #axs[1,2].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 3]*100, y2=maximum_bvalues_relative_u_best_z[:, 3]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
 #axs[1,2].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 3]*100, y2=maximum_bvalues_relative_u_best_z[:, 3]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -948,7 +948,7 @@ plot_3d_uvec_inset(fig, position=[.98, -0.01, 0.2, 0.5], angles=angles_best_c)
 fig.legend(frameon=False, ncols=4, loc=(.1, -.005))
 
 fig.tight_layout()
-fig.text(1, 0.89, "Large cross-terms", fontsize=16)
+fig.text(0.99, 0.89, "Large cross-terms", fontsize=16)
 fig.text(0.99, .46, "Minimal cross-terms", fontsize=16)
 fig.suptitle("Relative b-value deviation vs. isotropic resolution", x=.53, y=1.02)
 #fig.savefig(os.path.join(fig_save_path, "fig2.pdf"), bbox_inches="tight")
