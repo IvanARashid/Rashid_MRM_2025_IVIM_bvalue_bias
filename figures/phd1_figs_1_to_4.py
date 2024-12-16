@@ -1456,7 +1456,7 @@ f_reference = np.array([10*1e-2 for i in range(len(z))])
 Dstar_reference = np.array([20 for i in range(len(z))])
 D_reference = np.array([1 for i in range(len(z))])
 
-linestyles = [ls_nominal, ls_blue, ls_orange, (0, 7,7), (7, (7,7))]
+linestyles = [ls_nominal, ls_blue, ls_orange, (0, (7,7)), (7, (7,7))]
 # Plot results
 fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(10,6), sharex=True, tight_layout=True)
 lw = 1.5
