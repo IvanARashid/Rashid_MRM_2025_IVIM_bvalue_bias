@@ -380,7 +380,7 @@ lw = 1
 def fig1_subplot(uncorrected_fname, fig, ax_column, plot_title, sequence_design, labels):
     ax = axs[1, ax_column]
 
-    ax.plot(nominal_b, simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=0.02), color="black", label=labels[0], linewidth=1, ls="dotted")
+    ax.plot(nominal_b, simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=0.02), color="black", label=labels[0], linewidth=1.5, ls=(0,(2,5)))
     uncorrected_lower, uncorrected_upper = read_simulation_log(uncorrected_fname, ax=None, label="Uncorrected", alpha=0.2)
     #imaging_corrected_lower, imaging_corrected_upper = read_simulation_log(imaging_fname, ax=None, label="Corrected for imaging", color="yellow", alpha=0.2)
     #crossterm_corrected_lower, crossterm_corrected_upper = read_simulation_log(cross_terms_fname, ax=None, label="Corrected for cross terms", color="green", alpha=0.4)
@@ -419,7 +419,7 @@ def fig1_subplot(uncorrected_fname, fig, ax_column, plot_title, sequence_design,
 
     # Create an inset
     axins = ax.inset_axes([0.11, 0.1, 0.3, 0.4], xlim=(-10, 80), ylim=(0.83,1.02))
-    axins.plot(nominal_b, simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=0.02), color="black", linewidth=1, ls="dotted")
+    axins.plot(nominal_b, simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=0.02), color="black", linewidth=1.5, ls=(0, (2,5)))
     #axins.plot(nominal_b, uncorrected_lower, ls="")
     #axins.plot(nominal_b, uncorrected_upper, ls="")
     #axins.plot(nominal_b, powder_averaged_signals, ls="-", color="tab:blue", alpha=1, lw=1)
