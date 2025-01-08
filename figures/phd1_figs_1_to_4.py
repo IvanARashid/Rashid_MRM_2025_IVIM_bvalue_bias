@@ -948,7 +948,7 @@ axs[0,0].set_xlim([1, 4])
 plot_3d_uvec_inset(fig, position=[.98, .46, 0.2, 0.5], angles=angles_worst_c)
 plot_3d_uvec_inset(fig, position=[.98, 0.03, 0.2, 0.5], angles=angles_best_c)
 
-fig.legend(frameon=False, ncols=4, loc=(.1, -.005))
+fig.legend(frameon=False, ncols=4, loc=(.135, -.005))
 
 fig.tight_layout()
 #fig.text(0.99, 0.89, "Large cross-terms", fontsize=16)
