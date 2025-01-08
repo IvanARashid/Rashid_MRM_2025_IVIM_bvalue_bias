@@ -448,7 +448,7 @@ def fig1_subplot(uncorrected_fname, fig, ax_column, plot_title, sequence_design,
     ax.set_xlabel("Nominal b-value [s/mm$^\mathdefault{2}$]")
     ax.set_xlim(-25, 800)
 
-def fig1_sequence(ax_column, sequence_design, plot_title, legend_flag=False):
+def fig1_sequence(ax_column, sequence_design, plot_title, legend_flag=False, label=""):
     sequence_ax = axs[0, ax_column]
     ### Plot sequence design
 
@@ -525,7 +525,7 @@ def fig1_sequence(ax_column, sequence_design, plot_title, legend_flag=False):
     if legend_flag:
         axins_sequence.legend(frameon=False, loc=(.022, -.1), fontsize=11, ncols=2)
 
-    axins_sequence.annotate("Read-out", (24200,.002), fontsize=11)
+    axins_sequence.annotate("Readout", (24800,.002), fontsize=11)
 
     if sequence_design == "optimal":
         axins_sequence.annotate("Crushers only when needed", (15000,-15e-3), fontsize=11)
@@ -572,8 +572,11 @@ plot_powder_average(powder_average_xyz_antipodal_optimal, axs[1,1], "", "-")
 axs[1,0].set_ylabel("Signal")
 fig.legend(frameon=False, ncols=5, loc=(0.03, 0))
 
-fig1_sequence(0, "bad", plot_title="Sequence with large cross-terms", legend_flag=True)
-fig1_sequence(1, "optimal", plot_title="Sequence with minimal cross-terms")
+fig1_sequence(0, "bad", plot_title="", legend_flag=True, label="(a)")
+fig1_sequence(1, "optimal", plot_title="", label="(b)")
+
+fig.text(0.04, 0.95, "(a)", fontsize=18)
+fig.text(0.51, 0.95, "(b)", fontsize=18)
 
 fig.tight_layout()
 #fig.savefig(os.path.join(fig_save_path, "fig1.pdf"), bbox_inches="tight")
