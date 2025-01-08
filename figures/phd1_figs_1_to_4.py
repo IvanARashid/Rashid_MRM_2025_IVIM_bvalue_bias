@@ -945,15 +945,18 @@ fig_2_inset(axs[1,2], z*1e3, colors, [1, 4], [-10, 10], areas=[minimum_bvalues_r
 axs[0,0].set_xlim([1, 4])
 
 #plot_3d_uvec_inset(axs[0,2], 1)
-plot_3d_uvec_inset(fig, position=[.98, .43, 0.2, 0.5], angles=angles_worst_c)
-plot_3d_uvec_inset(fig, position=[.98, -0.01, 0.2, 0.5], angles=angles_best_c)
+plot_3d_uvec_inset(fig, position=[.98, .46, 0.2, 0.5], angles=angles_worst_c)
+plot_3d_uvec_inset(fig, position=[.98, 0.03, 0.2, 0.5], angles=angles_best_c)
 
 fig.legend(frameon=False, ncols=4, loc=(.1, -.005))
 
 fig.tight_layout()
-fig.text(0.99, 0.89, "Large cross-terms", fontsize=16)
-fig.text(0.99, .46, "Minimal cross-terms", fontsize=16)
-fig.suptitle("Relative b-value deviation vs. isotropic resolution", x=.53, y=1.02)
+#fig.text(0.99, 0.89, "Large cross-terms", fontsize=16)
+#fig.text(0.99, .46, "Minimal cross-terms", fontsize=16)
+fig.text(-0.02, 0.95, "(a)", fontsize="18")
+fig.text(-0.02, 0.5, "(b)", fontsize="18")
+#fig.suptitle("Relative b-value deviation vs. isotropic resolution", x=.53, y=1.02)
+
 #fig.savefig(os.path.join(fig_save_path, "fig2.pdf"), bbox_inches="tight")
 # %% Figure 3
 
