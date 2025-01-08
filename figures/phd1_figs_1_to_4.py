@@ -1326,13 +1326,15 @@ handles, labels = axs[0,0].get_legend_handles_labels()
 #fig.legend(handles_reordered, labels_reordered, ncols=4, frameon=False, bbox_to_anchor=[0.99,0.035])
 #fig.tight_layout()
 #fig.text(1, .75, "Large cross-terms")
-fig.text(.99, .7, "Large cross-terms")
-fig.text(.99, .3, "Minimal cross-terms")
+#fig.text(.99, .7, "Large cross-terms")
+#fig.text(.99, .3, "Minimal cross-terms")
 #fig.suptitle("IVIM parameter ranges vs. slice thickness", x=.53, y=1.02)
-fig.suptitle("IVIM parameter ranges vs. slice thickness", x=.53, y=0.95)
+#fig.suptitle("IVIM parameter ranges vs. slice thickness", x=.53, y=0.95)
+fig.text(0, 0.9525, "(a)", fontsize=18)
+fig.text(0, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
 
-fig.savefig(os.path.join(fig_save_path, "fig3_20241213.pdf"), bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "fig3_20241213.pdf"), bbox_inches="tight")
 
 # %% Figure 4 20241213
 
