@@ -579,7 +579,7 @@ fig.text(0.04, 0.95, "(a)", fontsize=18)
 fig.text(0.51, 0.95, "(b)", fontsize=18)
 
 fig.tight_layout()
-#fig.savefig(os.path.join(fig_save_path, "fig1.pdf"), bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_1.pdf"), bbox_inches="tight")
 # %% Figure 2
 
 xy = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 3e-3, 3.5e-3, 4e-3])
@@ -957,7 +957,7 @@ fig.text(-0.02, 0.95, "(a)", fontsize="18")
 fig.text(-0.02, 0.5, "(b)", fontsize="18")
 #fig.suptitle("Relative b-value deviation vs. isotropic resolution", x=.53, y=1.02)
 
-#fig.savefig(os.path.join(fig_save_path, "fig2.pdf"), bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_2.pdf"), bbox_inches="tight")
 # %% Figure 3
 
 folder_best_case = "optimal_allCrushers_onlyCrushWhenNeeded_sequence"
@@ -1334,7 +1334,7 @@ fig.text(0, 0.9525, "(a)", fontsize=18)
 fig.text(0, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
 
-#fig.savefig(os.path.join(fig_save_path, "fig3_20241213.pdf"), bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_3.pdf"), bbox_inches="tight")
 
 # %% Figure 4 20241213
 
@@ -1710,4 +1710,4 @@ fig.text(0, 0.9525, "(a)", fontsize=18)
 fig.text(0, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
 
-#fig.savefig(os.path.join(fig_save_path, "fig4_20241213.pdf"), bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_4.pdf"), bbox_inches="tight")
