@@ -576,7 +576,8 @@ fig1_sequence(0, "bad", plot_title="Sequence with large cross-terms", legend_fla
 fig1_sequence(1, "optimal", plot_title="Sequence with minimal cross-terms")
 
 fig.tight_layout()
-#fig.savefig(os.path.join(fig_save_path, "fig1.pdf"), bbox_inches="tight")
+fig_save_path = r"C:\Users\ivan5\Box\PhD\Resor\20250216 - Diffusion workshop 2025\b_value_correction"
+fig.savefig(os.path.join(fig_save_path, "fig1_for_poster.pdf"), bbox_inches="tight")
 # %% Figure 2
 
 xy = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 3e-3, 3.5e-3, 4e-3])
