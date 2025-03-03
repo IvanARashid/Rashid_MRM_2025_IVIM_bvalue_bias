@@ -35,18 +35,6 @@ def main1(sequence_config=sequence_config, save_path=save_path, uvec_file=uvec_f
     include_cross_terms = False
 
 
-    #bvalues_many1, angles = simulate_pulse_sequences.simulate_n_generic_sequences_with_uvec_rotation(sequence_config=sequence_config, nominal_bvalues=nominal_bvalues, uvec_file=uvec_file, return_angles=True, plot=True, save_path=save_path, include_imaging=include_imaging, include_cross_terms=include_cross_terms, full_id=full_id)
-
-    #resolution_lst = np.round(np.linspace(1,4,13)*1e-3, decimals=7)
-    #bvalues_many, angles = simulate_pulse_sequences.simulate_n_generic_sequences_with_uvec_rotation(sequence_config=sequence_config, nominal_bvalues=nominal_bvalues, uvec_file=uvec_file, return_angles=True, plot=True, save_path=save_path, include_imaging=include_imaging, include_cross_terms=include_cross_terms, full_id=full_id)
-
-    #for resolution in resolution_lst:
-        ##sequence_config["xres"] = resolution
-        ##sequence_config["yres"] = resolution
-        #sequence_config["zres"] = resolution
-        ## Run simulation
-        #bvalues_many, angles = simulate_pulse_sequences.simulate_n_generic_sequences_with_uvec_rotation(sequence_config=sequence_config, nominal_bvalues=nominal_bvalues, uvec_file=uvec_file, return_angles=True, plot=False, save_path=save_path, include_imaging=include_imaging, include_cross_terms=include_cross_terms, full_id=full_id)
-
     chunks = resolution_lst.shape[0]
 
     sequence_configs = []
@@ -57,12 +45,6 @@ def main1(sequence_config=sequence_config, save_path=save_path, uvec_file=uvec_f
         sequence_configs.append(copy.deepcopy(sequence_config))
 
 
-    #sequence_config["xres"] = resolution
-    #sequence_config["yres"] = resolution
-
-
-    #sequence_config_chunks = [sequence_config for i in range(chunks)]
-    #nominal_bvalues_chunks = np.array_split(np.asarray(nominal_bvalues), indices_or_sections=chunks)
     nominal_bvalues_chunks = [nominal_bvalues for i in range(chunks)]
     uvec_file_chunks = [uvec_file for i in range(chunks)]
     return_angles_chunks = [True for i in range(chunks)]
@@ -76,8 +58,6 @@ def main1(sequence_config=sequence_config, save_path=save_path, uvec_file=uvec_f
     for i in range(chunks):
         input_list.append([sequence_configs[i], nominal_bvalues_chunks[i], uvec_file_chunks[i], return_angles_chunks[i], save_path_chunks[i], plot_chunks[i], include_imaging_chunks[i], include_cross_terms_chunks[i], full_id_chunks[i]])
 
-    # Run simulation
-    #bvalues_many, angles = simulate_pulse_sequences.simulate_n_generic_sequences_with_uvec_rotation(sequence_config=sequence_config, nominal_bvalues=nominal_bvalues, uvec_file=uvec_file, return_angles=True, plot=False, save_path=save_path, include_imaging=include_imaging, include_cross_terms=include_cross_terms, full_id=full_id)
 
     pool = mp.Pool(chunks)
     res = pool.starmap_async(simulate_pulse_sequences.simulate_n_generic_sequences_with_uvec_rotation, input_list)
