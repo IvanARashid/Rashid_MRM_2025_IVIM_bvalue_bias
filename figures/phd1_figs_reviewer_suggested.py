@@ -334,4 +334,96 @@ axs[1].legend(frameon=False, loc="upper left")
 
 fig.tight_layout()
 
+# %% Relative b-value error vs b-value, 2x2
+
+resolutions = np.array([1e-3, 4e-3]) # High-res and low-res
+
+bvalues_nominal_worst, bvalues_actual_worst = read_simulation_files_and_average(path_worst, correction="crossterm_corrected", angles="xyz", xyres=resolutions, zres=resolutions)
+bvalues_nominal_best, bvalues_actual_best = read_simulation_files_and_average(path_best, correction="crossterm_corrected", angles="xyz", xyres=resolutions, zres=resolutions)
+
+bvalues_actual_best_highres = bvalues_actual_best[:, :-1, 0]
+bvalues_actual_best_lowres = bvalues_actual_best[:, :-1, 1]
+
+bvalues_actual_worst_highres = bvalues_actual_worst[:, :-1, 0]
+bvalues_actual_worst_lowres = bvalues_actual_worst[:, :-1, 1]
+
+bvalues_actual_best_xy_highres_relative_error = (bvalues_actual_best_highres[0,:]-bvalues_nominal_best[:-1])/bvalues_nominal_best[:-1]
+bvalues_actual_best_xy_lowres_relative_error = (bvalues_actual_best_lowres[0,:]-bvalues_nominal_best[:-1])/bvalues_nominal_best[:-1]
+
+bvalues_actual_worst_xy_highres_relative_error = (bvalues_actual_worst_highres[0,:]-bvalues_nominal_worst[:-1])/bvalues_nominal_worst[:-1]
+bvalues_actual_worst_xy_lowres_relative_error = (bvalues_actual_worst_lowres[0,:]-bvalues_nominal_worst[:-1])/bvalues_nominal_worst[:-1]
+
+### Create the figure ###
+fig, axs = plt.subplots(figsize=(7.5,6.5), nrows=2, ncols=2, sharex=True, sharey="row")
+## First column, xy gradient errors
+axs[0,0].fill_between(bvalues_nominal_worst[:-1], bvalues_actual_worst_xy_lowres_relative_error*100, bvalues_actual_worst_xy_highres_relative_error*100, alpha=alpha_area)
+axs[0,0].fill_between(bvalues_nominal_best[:-1], bvalues_actual_best_xy_lowres_relative_error*100, bvalues_actual_best_xy_highres_relative_error*100, alpha=alpha_area)
+
+# xy text
+high_res_text = CurvedText(x=np.flip(bvalues_nominal_best[:-1])[13:], y=np.flip(bvalues_actual_best_xy_highres_relative_error*140)[13:], text="High resolution", axes=axs[0,0])
+low_res_text = CurvedText(x=np.flip(bvalues_nominal_best[:-1])[11:], y=np.flip(bvalues_actual_best_xy_lowres_relative_error*140)[11:], text="Low resolution", axes=axs[0,0])
+crushers_off_text = axs[0,0].annotate("Crushers off", (200,100), xytext=(10,5), rotation=-76, fontsize=10)
+
+# z text
+#high_res_text = CurvedText(x=np.flip(bvalues_nominal_best[:-1])[12:], y=np.flip(bvalues_actual_best_xy_highres_relative_error*115)[12:], text="High resolution", axes=axs[0,1])
+#low_res_text = CurvedText(x=np.flip(bvalues_nominal_best[:-1])[11:], y=np.flip(bvalues_actual_best_xy_lowres_relative_error*115)[11:], text="Low resolution", axes=axs[0,1])
+#crushers_off_text = axs[0,1].annotate("Crushers off", (200,100), xytext=(10,19), rotation=-77, fontsize=10)
+
+axs[0,0].set_xscale("log")
+axs[0,0].set_yscale("log")
+import matplotlib.ticker as ticker
+#axs[0].get_xaxis().set_major_formatter(ticker.ScalarFormatter())
+#axs[0].get_yaxis().set_major_formatter(ticker.ScalarFormatter())
+
+axs[0,0].set_ylim(0)
+axs[0,0].set_xlim(1,800)
+
+#axs[0].set_xlabel("Nominal b-value [s/mm$^2$]")
+axs[0,0].set_ylabel("Relative b-value deviation [\%]")
+
+# Aboslute error
+axs[1,0].fill_between(bvalues_nominal_worst[:-1], bvalues_actual_worst_lowres[0,:] - bvalues_nominal_worst[:-1], bvalues_actual_worst_highres[0,:] - bvalues_nominal_worst[:-1], alpha=alpha_area, label="Large cross-terms")
+axs[1,0].fill_between(bvalues_nominal_best[:-1], bvalues_actual_best_lowres[0,:] - bvalues_nominal_best[:-1], bvalues_actual_best_highres[0,:] - bvalues_nominal_best[:-1], alpha=alpha_area, label="Minimal cross-terms")
+
+# xy
+high_res_text = CurvedText(x=np.flip(bvalues_nominal_worst[:-1])[11:]+18, y=np.flip(bvalues_actual_worst_highres[0,:] - bvalues_nominal_worst[:-1])[11:]+4, text="High resolution", axes=axs[1,0])
+low_res_text = CurvedText(x=np.flip(bvalues_nominal_worst[:-1])[11:]+20, y=np.flip(bvalues_actual_worst_lowres[0,:] - bvalues_nominal_worst[:-1])[11:]+2.5, text="Low resolution", axes=axs[1,0])
+
+# z
+#high_res_text = CurvedText(x=np.flip(bvalues_nominal_worst[:-1])[11:]+18, y=np.flip(bvalues_actual_worst_xy_highres - bvalues_nominal_worst[:-1])[11:]+6, text="High resolution", axes=axs[1,0])
+#low_res_text = CurvedText(x=np.flip(bvalues_nominal_worst[:-1])[11:]+20, y=np.flip(bvalues_actual_worst_xy_lowres - bvalues_nominal_worst[:-1])[11:]+3, text="Low resolution", axes=axs[1,0])
+
+axs[1,0].set_xscale("log")
+#axs[1].set_yscale("log")
+axs[1,0].get_xaxis().set_major_formatter(ticker.ScalarFormatter())
+axs[1,0].set_xlim(1,800)
+axs[1,0].set_xticks([1, 10, 100, 800])
+
+axs[1,0].set_xlabel("Nominal b-value [s/mm$^2$]")
+axs[1,0].set_ylabel("Absolute b-value deviation [s/mm$^2$]")
+
+axs[1,0].legend(frameon=False, loc="upper left")
+
+
+## Second column, z gradient errors
+bvalues_actual_best_z_highres_relative_error = (bvalues_actual_best_highres[2,:]-bvalues_nominal_best[:-1])/bvalues_nominal_best[:-1]
+bvalues_actual_best_z_lowres_relative_error = (bvalues_actual_best_lowres[2,:]-bvalues_nominal_best[:-1])/bvalues_nominal_best[:-1]
+
+bvalues_actual_worst_z_highres_relative_error = (bvalues_actual_worst_highres[2,:]-bvalues_nominal_worst[:-1])/bvalues_nominal_worst[:-1]
+bvalues_actual_worst_z_lowres_relative_error = (bvalues_actual_worst_lowres[2,:]-bvalues_nominal_worst[:-1])/bvalues_nominal_worst[:-1]
+axs[0,1].fill_between(bvalues_nominal_worst[:-1], bvalues_actual_worst_z_lowres_relative_error*100, bvalues_actual_worst_z_highres_relative_error*100, alpha=alpha_area)
+axs[0,1].fill_between(bvalues_nominal_best[:-1], bvalues_actual_best_z_lowres_relative_error*100, bvalues_actual_best_z_highres_relative_error*100, alpha=alpha_area)
+
+#axs[0,1].set_yscale("log")
+# Aboslute error
+axs[1,1].fill_between(bvalues_nominal_worst[:-1], bvalues_actual_worst_lowres[2,:] - bvalues_nominal_worst[:-1], bvalues_actual_worst_highres[2,:] - bvalues_nominal_worst[:-1], alpha=alpha_area, label="Large cross-terms")
+axs[1,1].fill_between(bvalues_nominal_best[:-1], bvalues_actual_best_lowres[2,:] - bvalues_nominal_best[:-1], bvalues_actual_best_highres[2,:] - bvalues_nominal_best[:-1], alpha=alpha_area, label="Minimal cross-terms")
+
+axs[1,1].set_ylim(0)
+axs[1,1].set_xlabel("Nominal b-value [s/mm$^2$]")
+
+
+fig.text(0, 1, "(a)", fontsize=18)
+fig.text(0.515, 1, "(b)", fontsize=18)
+fig.tight_layout()
 # %%
