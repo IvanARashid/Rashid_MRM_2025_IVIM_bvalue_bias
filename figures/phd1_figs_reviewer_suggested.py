@@ -10,6 +10,8 @@ from dMRItools import simulate_pulse_sequences
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import AxesGrid, ImageGrid
+import matplotlib.colors as colors
 
 from dMRItools import bval_calc_tools
 
@@ -56,6 +58,61 @@ def read_simulation_files_and_average(path_to_folder, correction="uncorrected", 
 
     bvalues_actual_vs_resolution = np.asarray(bvalues_actual_vs_resolution)
     return bvalues_nominal, bvalues_actual_vs_resolution.T
+
+def powder_average_all_simulation_logs_new(path, correction="uncorrected", angles="xyz", xyres=[1e-3], zres=[1e-3], f=.1, Dstar=20e-3, D=1e-3):
+    f_array = np.zeros(len(xyres))
+    Dstar_array = np.zeros(len(xyres))
+    D_array = np.zeros(len(xyres))
+
+    for idx in range(len(xyres)):
+        # Build the filename string
+        reported_fname = f"{correction}_{angles}_xy{xyres[idx]}_z{zres[idx]}_bvalues_actual.npy"
+        actual_fname = f"crossterm_corrected_{angles}_xy{xyres[idx]}_z{zres[idx]}"
+
+        # Get true powder averaged signals using actual bvals
+        #powder_averaged_signals = bval_calc_tools.powder_average_signals_from_file(os.path.join(path, actual_fname))
+        signals = bval_calc_tools.signals_from_file(os.path.join(path, actual_fname), f=f, Dstar=Dstar, D=D)
+        signals = signals.flatten()
+
+        # Get reported bvals
+        bvals_reported = np.load(os.path.join(path, reported_fname))
+        bvals_reported = np.flip(bvals_reported)
+        bvals_reported = bvals_reported.flatten()
+
+        ### Perform parameter estimations
+        # Construct gradient table
+        bvec = np.zeros((bvals_reported.size, 3))
+        bvec[:,2] = 1
+        factor = 1000
+        gtab_nominal = gradient_table(bvals_reported/factor, bvec, b0_threshold=0)
+        model_nominal = ivim_fit_method_biexp.IvimModelBiExp(gtab_nominal, rescale_units=True)
+
+        # Perform parameter estimation
+        #estimates = model_nominal.fit(powder_averaged_signals)
+        estimates = model_nominal.fit(signals)
+
+        f_array[idx] = estimates.perfusion_fraction
+        Dstar_array[idx] = estimates.D_star
+        D_array[idx] = estimates.D
+
+    return f_array, Dstar_array, D_array
+
+# set the colormap and centre the colorbar
+class MidpointNormalize(colors.Normalize):
+	"""
+	Normalise the colorbar so that diverging bars work there way either side from a prescribed midpoint value)
+
+	e.g. im=ax1.imshow(array, norm=MidpointNormalize(midpoint=0.,vmin=-100, vmax=100))
+	"""
+	def __init__(self, vmin=None, vmax=None, midpoint=None, clip=False):
+		self.midpoint = midpoint
+		colors.Normalize.__init__(self, vmin, vmax, clip)
+
+	def __call__(self, value, clip=None):
+		# I'm ignoring masked values and all kinds of edge cases to make a
+		# simple example...
+		x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
+		return np.ma.masked_array(np.interp(value, x, y), np.isnan(value))
 
 # %% Curved text from https://stackoverflow.com/questions/19353576/curved-text-rendering-in-matplotlib
 
@@ -426,4 +483,123 @@ axs[1,1].set_xlabel("Nominal b-value [s/mm$^2$]")
 fig.text(0, 1, "(a)", fontsize=18)
 fig.text(0.515, 1, "(b)", fontsize=18)
 fig.tight_layout()
+# %% Error heatmaps for nominal xyz analysis
+
+# Stepsizes
+resolutions = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 3e-3, 3.5e-3, 4e-3])
+
+f_range = np.linspace(1e-2, 30e-2, 50)
+Dstar_range = np.linspace(5e-3, 50e-3, 50)
+D_range = np.linspace(0.5e-3, 3e-3, 50)
+
+f_constant = 0.1
+Dstar_constant = 20e-3
+D_constant = 1e-3 
+
+#bvalues_nominal_worst, bvalues_actual_worst = read_simulation_files_and_average(path_worst, correction="uncorrected", angles="xyz", xyres=resolutions, zres=resolutions)
+#bvalues_nominal_best, bvalues_actual_best = read_simulation_files_and_average(path_best, correction="crossterm_corrected", angles="xyz", xyres=resolutions, zres=resolutions)
+
+### Varying f
+f_f_heatmap_estimates = np.zeros((f_range.shape[0], resolutions.shape[0]))
+f_f_heatmap_truth = np.zeros((f_range.shape[0], resolutions.shape[0]))
+
+f_Dstar_heatmap_estimates = np.zeros((f_range.shape[0], resolutions.shape[0]))
+f_Dstar_heatmap_truth = np.zeros((f_range.shape[0], resolutions.shape[0]))
+
+f_D_heatmap_estimates = np.zeros((f_range.shape[0], resolutions.shape[0]))
+f_D_heatmap_truth = np.zeros((f_range.shape[0], resolutions.shape[0]))
+for i in range(f_range.shape[0]):
+    f_estimates, Dstar_estimates, D_estimates = powder_average_all_simulation_logs_new(path_worst, correction="uncorrected", angles="xyz", xyres=resolutions, zres=resolutions, f=f_range[i], Dstar=Dstar_constant, D=D_constant)
+
+    f_f_heatmap_estimates[i, :] = f_estimates
+    f_f_heatmap_truth[i, :] = f_range[i]
+
+    f_Dstar_heatmap_estimates[i, :] = Dstar_estimates
+    f_Dstar_heatmap_truth[:, :] = Dstar_constant*1000
+
+    f_D_heatmap_estimates[i, :] = D_estimates
+    f_D_heatmap_truth[:, :] = D_constant*1000
+
+### Varying Dstar
+Dstar_f_heatmap_estimates = np.zeros((Dstar_range.shape[0], resolutions.shape[0]))
+Dstar_f_heatmap_truth = np.zeros((Dstar_range.shape[0], resolutions.shape[0]))
+
+Dstar_Dstar_heatmap_estimates = np.zeros((Dstar_range.shape[0], resolutions.shape[0]))
+Dstar_Dstar_heatmap_truth = np.zeros((Dstar_range.shape[0], resolutions.shape[0]))
+
+Dstar_D_heatmap_estimates = np.zeros((Dstar_range.shape[0], resolutions.shape[0]))
+Dstar_D_heatmap_truth = np.zeros((Dstar_range.shape[0], resolutions.shape[0]))
+for i in range(Dstar_range.shape[0]):
+    f_estimates, Dstar_estimates, D_estimates = powder_average_all_simulation_logs_new(path_worst, correction="uncorrected", angles="xyz", xyres=resolutions, zres=resolutions, f=f_constant, Dstar=Dstar_range[i], D=D_constant)
+
+    Dstar_f_heatmap_estimates[i, :] = f_estimates
+    Dstar_f_heatmap_truth[:, :] = f_constant
+
+    Dstar_Dstar_heatmap_estimates[i, :] = Dstar_estimates
+    Dstar_Dstar_heatmap_truth[i, :] = Dstar_range[i]*1000
+
+    Dstar_D_heatmap_estimates[i, :] = D_estimates
+    Dstar_D_heatmap_truth[:, :] = D_constant*1000
+
+
+### Varying D
+D_f_heatmap_estimates = np.zeros((D_range.shape[0], resolutions.shape[0]))
+D_f_heatmap_truth = np.zeros((D_range.shape[0], resolutions.shape[0]))
+
+D_Dstar_heatmap_estimates = np.zeros((D_range.shape[0], resolutions.shape[0]))
+D_Dstar_heatmap_truth = np.zeros((D_range.shape[0], resolutions.shape[0]))
+
+D_D_heatmap_estimates = np.zeros((D_range.shape[0], resolutions.shape[0]))
+D_D_heatmap_truth = np.zeros((D_range.shape[0], resolutions.shape[0]))
+for i in range(D_range.shape[0]):
+    f_estimates, Dstar_estimates, D_estimates = powder_average_all_simulation_logs_new(path_worst, correction="uncorrected", angles="xyz", xyres=resolutions, zres=resolutions, f=f_constant, Dstar=Dstar_constant, D=D_range[i])
+
+    D_f_heatmap_estimates[i, :] = f_estimates
+    D_f_heatmap_truth[:, :] = f_constant
+
+    D_Dstar_heatmap_estimates[i, :] = Dstar_estimates
+    D_Dstar_heatmap_truth[:, :] = Dstar_constant*1000
+
+    D_D_heatmap_estimates[i, :] = D_estimates
+    D_D_heatmap_truth[i, :] = D_range[i]*1000
+
+colormap = "BrBG"
+aspect = 0.2
+fig = plt.figure(figsize=(8,4))
+grid = ImageGrid(fig, 111,
+                nrows_ncols=(2,3),
+                axes_pad=0.4,
+                label_mode="L",
+                cbar_location="top",
+                cbar_mode="edge",
+                cbar_pad=0.3,
+                cbar_size="10%",
+                share_all=False)
+
+#f = grid[0].imshow(np.flip(f_f_heatmap_truth, axis=0))
+#f = grid[0].imshow(np.flip((f_f_heatmap_estimates-f_f_heatmap_truth)/f_f_heatmap_truth, axis=0), cmap=colormap, vmin=-0.25, vmax=0.25, aspect=aspect, interpolation="bilinear")
+#f = grid[0].imshow((f_f_heatmap_estimates-f_f_heatmap_truth)/f_f_heatmap_truth, origin="lower", cmap=colormap, clim=(-0.2, 1.0), norm=MidpointNormalize(midpoint=0.0, vmin=-0.2, vmax=1.0), aspect=aspect, interpolation="bilinear")
+#norm=colors.TwoSlopeNorm(vmin=vmin-1e-5, vcenter=0., vmax=vmax+1e-5)
+norm=colors.TwoSlopeNorm(vmin=-0.2, vcenter=0., vmax=1.0)
+#f = grid[0].imshow((f_f_heatmap_estimates-f_f_heatmap_truth)/f_f_heatmap_truth, origin="lower", cmap=colormap, clim=(-0.2, 1.0), norm=MidpointNormalize(midpoint=0.0, vmin=-0.2, vmax=0.2), aspect=aspect, interpolation="bilinear")
+f = grid[0].imshow((f_f_heatmap_estimates-f_f_heatmap_truth)/f_f_heatmap_truth, origin="lower", cmap=colormap, norm=norm, aspect=aspect, interpolation="none")
+cax = grid.cbar_axes[0].colorbar(f)
+cax.set_ticks([-0.2, 0, 1])
+grid[0].set_ylabel("Ground truth $f$ [\%]")
+grid[0].set_yticks([0, 15, 32, 49])
+grid[0].set_yticklabels([0, 10, 20, 30])
+
+#Dstar = grid[1].imshow(np.flip((Dstar_Dstar_heatmap_estimates-Dstar_Dstar_heatmap_truth)/Dstar_Dstar_heatmap_truth, axis=0), vmin=0.1, vmax=0.7, aspect=aspect)
+Dstar = grid[1].imshow((Dstar_Dstar_heatmap_estimates-Dstar_Dstar_heatmap_truth)/Dstar_Dstar_heatmap_truth, origin="lower", vmin=0.1, vmax=1.0, aspect=aspect, interpolation="none")
+cax = grid.cbar_axes[1].colorbar(Dstar)
+cax.set_ticks([0.1, 1])
+grid[1].set_ylabel("Ground truth $f$ [\%]")
+grid[1].set_yticks([0, 15, 32, 49])
+grid[1].set_yticklabels([0, 10, 20, 30])
+
+#D = grid[2].imshow(np.flip((D_D_heatmap_estimates-D_D_heatmap_truth)/D_D_heatmap_truth, axis=0), aspect=aspect)
+D = grid[2].imshow((D_D_heatmap_estimates-D_D_heatmap_truth)/D_D_heatmap_truth, origin="lower", aspect=aspect, interpolation="bilinear")
+grid.cbar_axes[2].colorbar(D)
+
+
 # %%
