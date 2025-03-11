@@ -28,6 +28,8 @@ simulation_files_folder = r"..\simulation_data\figs_reviewer_suggested"
 folder_best_case = "optimal_allCrushers_onlyCrushWhenNeeded_sequence"
 folder_worst_case = "allCrushers_sequence"
 
+fig_save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\MRM_submission\revision 1\figure drafts"
+
 path_best = os.path.join(simulation_files_folder, folder_best_case)
 path_worst = os.path.join(simulation_files_folder, folder_worst_case)
 
@@ -308,6 +310,8 @@ ax.set_ylabel("Actual b0 [s/mm$^2$]")
 
 ax.legend(frameon=False)
 
+#fig.savefig(os.path.join(fig_save_path, "Figure_reviewer_1.tiff"), dpi=550, bbox_inches="tight")
+
 
 # %% Relative b-value error vs b-value
 
@@ -483,6 +487,9 @@ axs[1,1].set_xlabel("Nominal b-value [s/mm$^2$]")
 fig.text(0, 1, "(a)", fontsize=18)
 fig.text(0.515, 1, "(b)", fontsize=18)
 fig.tight_layout()
+
+#fig.savefig(os.path.join(fig_save_path, "Figure_reviewer_2.tiff"), dpi=300, bbox_inches="tight")
+
 # %% Error heatmaps for nominal xyz analysis 
 
 # Stepsizes
@@ -633,6 +640,7 @@ cbar_shrink = 0.72
 aspect = 0.2
 factor = 100 # To show relative errors as percentages
 
+colormap = "BrBG"
 fig, axs = plt.subplots(ncols=3, nrows=2, figsize=(9,6), sharex=True)
 
 norm = colors.TwoSlopeNorm(vmin=-0.2*factor, vcenter=0.*factor, vmax=1.0*factor)
@@ -705,5 +713,7 @@ axs[1,2].set_xticklabels([1, 2, 3, 4])
 fig.text(0.01, 0.95, "(a)", fontsize=18)
 fig.text(0.01, 0.47, "(b)", fontsize=18)
 fig.tight_layout()
+
+#fig.savefig(os.path.join(fig_save_path, "Figure_reviewer_3.tiff"), dpi=300, bbox_inches="tight")
 
 # %%
