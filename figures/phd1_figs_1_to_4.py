@@ -32,8 +32,8 @@ save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients
 # Path to folder where figures will be saved
 fig_save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\figures"
 
-folder_best_case = "optimal_allCrushers_onlyCrushWhenNeeded_sequence"
-folder_worst_case = "allCrushers_sequence"
+folder_best_case = r"simulation_data\figs_1_to_4\optimal_allCrushers_onlyCrushWhenNeeded_sequence"
+folder_worst_case = r"simulation_data\figs_1_to_4\allCrushers_sequence"
 
 path_best = os.path.join(save_path, folder_best_case)
 path_worst = os.path.join(save_path, folder_worst_case)
@@ -513,26 +513,16 @@ fig.tight_layout()
 # %% Figure 2
 
 xy = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 3e-3, 3.5e-3, 4e-3])
-#z = np.array([1e-3, 2e-3, 3e-3, 4e-3])
 z = xy
 
-path_worst = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\bvalue simulations\20241101\allCrushers_sequence"
 f_u_worst, Dstar_u_worst, D_u_worst, bvals_nom_u_worst, minimum_bvalues_u_worst_z, maximum_bvalues_u_worst_z, angles_worst_u = read_all_generic_simulation_logs_uvecs(path_worst, correction="uncorrected", angles="froeling_200", xyres=xy, zres=z, return_angles=True)
 f_i_worst, Dstar_i_worst, D_i_worst, bvals_nom_i_worst, minimum_bvalues_i_worst_z, maximum_bvalues_i_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="imaging_corrected", angles="froeling_200", xyres=xy, zres=z)
 f_c_worst, Dstar_c_worst, D_c_worst, bvals_nom_c_worst, minimum_bvalues_c_worst_z, maximum_bvalues_c_worst_z, angles_worst_c = read_all_generic_simulation_logs_uvecs(path_worst, correction="crossterm_corrected", angles="froeling_200", xyres=xy, zres=z, return_angles=True)
 
-path_best = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\bvalue simulations\20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence"
 f_u_best, Dstar_u_best, D_u_best, bvals_nom_u_best, minimum_bvalues_u_best_z, maximum_bvalues_u_best_z, angles_best_u = read_all_generic_simulation_logs_uvecs(path_best, correction="uncorrected", angles="froeling_200", xyres=xy, zres=z, return_angles=True)
 f_i_best, Dstar_i_best, D_i_best, bvals_nom_i_best, minimum_bvalues_i_best_z, maximum_bvalues_i_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="imaging_corrected", angles="froeling_200", xyres=xy, zres=z)
 f_c_best, Dstar_c_best, D_c_best, bvals_nom_c_best, minimum_bvalues_c_best_z, maximum_bvalues_c_best_z, angles_best_c = read_all_generic_simulation_logs_uvecs(path_best, correction="crossterm_corrected", angles="froeling_200", xyres=xy, zres=z, return_angles=True)
 
-#f_u_worst, Dstar_u_worst, D_u_worst, bvals_nom_u_worst, minimum_bvalues_u_worst_z, maximum_bvalues_u_worst_z, angles_worst_u = read_all_generic_simulation_logs(path_worst, correction="uncorrected", ndir=1000, xyres=xy, zres=z, return_angles=True)
-#f_i_worst, Dstar_i_worst, D_i_worst, bvals_nom_i_worst, minimum_bvalues_i_worst_z, maximum_bvalues_i_worst_z = read_all_generic_simulation_logs(path_worst, correction="imaging_corrected", ndir=1000, xyres=xy, zres=z)
-#f_c_worst, Dstar_c_worst, D_c_worst, bvals_nom_c_worst, minimum_bvalues_c_worst_z, maximum_bvalues_c_worst_z = read_all_generic_simulation_logs(path_worst, correction="crossterm_corrected", ndir=1000, xyres=xy, zres=z)
-
-#f_u_best, Dstar_u_best, D_u_best, bvals_nom_u_best, minimum_bvalues_u_best_z, maximum_bvalues_u_best_z, angles_best_u = read_all_generic_simulation_logs(path_best, correction="uncorrected", ndir=1000, xyres=xy, zres=z, return_angles=True)
-#f_i_best, Dstar_i_best, D_i_best, bvals_nom_i_best, minimum_bvalues_i_best_z, maximum_bvalues_i_best_z = read_all_generic_simulation_logs(path_best, correction="imaging_corrected", ndir=1000, xyres=xy, zres=z)
-#f_c_best, Dstar_c_best, D_c_best, bvals_nom_c_best, minimum_bvalues_c_best_z, maximum_bvalues_c_best_z = read_all_generic_simulation_logs(path_best, correction="crossterm_corrected", ndir=1000, xyres=xy, zres=z)
 ################# In-plane resolution
 # xy res
 nominal_bvals = np.array([0.0000001, 50, 200, 800])
@@ -551,7 +541,6 @@ minimum_bvalues_relative_c_worst_z = (minimum_bvalues_c_worst_z - nominal_bvals)
 maximum_bvalues_relative_u_worst_z = (maximum_bvalues_u_worst_z - nominal_bvals)/nominal_bvals
 maximum_bvalues_relative_i_worst_z = (maximum_bvalues_i_worst_z - nominal_bvals)/nominal_bvals
 maximum_bvalues_relative_c_worst_z = (maximum_bvalues_c_worst_z - nominal_bvals)/nominal_bvals
-#z = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 2.75e-3, 3e-3, 3.25e-3, 3.5e-3, 3.75e-3, 4e-3]) #xy res
 
 def get_encoding_array(angles, bval):
     trapezoid = waveforms.trapezoid(delta=23e-3, slew_rate=1e6, amplitude=10e-3, gradient_update_rate=4e-6, return_time_axis=False)
@@ -617,9 +606,6 @@ def plot_3d_uvec_inset_old(fig, position, angles):
     uvec_max = B_max_diagonal/np.linalg.norm(B_max_diagonal)
     uvec_min = B_min_diagonal/np.linalg.norm(B_min_diagonal)*-1
 
-    #uvec_max = np.max(gwf_max.gwf, axis=0)/np.linalg.norm(np.max(gwf_max.gwf, axis=0))
-    #uvec_min = np.min(gwf_min.gwf, axis=0)/np.linalg.norm(np.min(gwf_min.gwf, axis=0))
-
     ax = fig.add_axes(position, projection=("3d"))
     ax.set_proj_type("persp")
     ax.view_init(10,70+180)
@@ -631,8 +617,6 @@ def plot_3d_uvec_inset_old(fig, position, angles):
 
 
     # Plot the uvecs
-    #ax.plot([0, uvec_max[0]], [0, uvec_max[1]], [0, uvec_max[2]], color="tab:blue", ls="-")
-    #ax.plot([0, uvec_min[0]], [0, uvec_min[1]], [0, uvec_min[2]], color="tab:orange", ls="-")
     ax.quiver(0, 0, 0, *uvec_max, color="tab:red")
     ax.quiver(0, 0, 0, *uvec_min, color="black", alpha=.6)
 
@@ -642,11 +626,6 @@ def plot_3d_uvec_inset_old(fig, position, angles):
     ax.text(1.1, 0, -.1, "x")
     ax.text(0, -1.3, -.15, "y")
     ax.text(0, -.1, 1.1, "z")
-
-    #arrow_max = Arrow3D([0, uvec_max[0]], [0, uvec_max[1]], [0, uvec_max[2]], mutation_scale=20, lw=3, arrowstyle="-|>", color="tab:blue")
-    #ax.add_artist(arrow_max)
-    #ax.annotate(text="", xy=(0, 0), xytext=(uvec_max[0], uvec_max[1]), arrowprops=dict(arrowstyle="<-"))
-
 
     ax.set_xlabel("")
     ax.set_ylabel("")
@@ -690,9 +669,6 @@ def plot_3d_uvec_inset(fig, position, angles):
     uvec_max = B_max_diagonal/np.linalg.norm(B_max_diagonal)
     uvec_min = B_min_diagonal/np.linalg.norm(B_min_diagonal)*-1
 
-    #uvec_max = np.max(gwf_max.gwf, axis=0)/np.linalg.norm(np.max(gwf_max.gwf, axis=0))
-    #uvec_min = np.min(gwf_min.gwf, axis=0)/np.linalg.norm(np.min(gwf_min.gwf, axis=0))
-
     uvec_max = angles[1,:,10]
     uvec_min = angles[0,:,10]
 
@@ -707,8 +683,6 @@ def plot_3d_uvec_inset(fig, position, angles):
 
 
     # Plot the uvecs
-    #ax.plot([0, uvec_max[0]], [0, uvec_max[1]], [0, uvec_max[2]], color="tab:blue", ls="-")
-    #ax.plot([0, uvec_min[0]], [0, uvec_min[1]], [0, uvec_min[2]], color="tab:orange", ls="-")
     ax.quiver(0, 0, 0, *uvec_max, color="tab:red")
     ax.quiver(0, 0, 0, *uvec_min, color="black", alpha=.6)
 
@@ -718,11 +692,6 @@ def plot_3d_uvec_inset(fig, position, angles):
     ax.text(1.1, 0, -.1, "x")
     ax.text(0, -1.3, -.15, "y")
     ax.text(0, -.1, 1.1, "z")
-
-    #arrow_max = Arrow3D([0, uvec_max[0]], [0, uvec_max[1]], [0, uvec_max[2]], mutation_scale=20, lw=3, arrowstyle="-|>", color="tab:blue")
-    #ax.add_artist(arrow_max)
-    #ax.annotate(text="", xy=(0, 0), xytext=(uvec_max[0], uvec_max[1]), arrowprops=dict(arrowstyle="<-"))
-
 
     ax.set_xlabel("")
     ax.set_ylabel("")
@@ -753,8 +722,6 @@ def plot_3d_uvec_inset(fig, position, angles):
 def fig_2_inset(ax, x_axis, colors, xlim, ylim, position=[0.3, 0.46, 0.6, 0.5], areas=None):
     axins = ax.inset_axes(position, xlim=xlim, ylim=ylim)
 
-    #for line_idx in range(len(pwd_avg_lines)):
-        #axins.fill_between(x_axis, pwd_avg_lines[line_idx], color=colors[line_idx], linewidth=1, ls=linestyles[line_idx])
     axins.plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
     
     print(colors)
@@ -771,9 +738,6 @@ def fig_2_inset(ax, x_axis, colors, xlim, ylim, position=[0.3, 0.46, 0.6, 0.5], 
 fig, axs = plt.subplots(ncols=3, nrows=2, figsize=(10,6), sharey=True, sharex=True)
 # 50 Nominal
 axs[0,0].plot(z*1e3, [0 for i in range(len(z))], color="black", label="Nominal", ls=(0, (2,5)), lw=1.5)
-# 50 Uncorrected
-#axs[0,0].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 1]*100, y2=maximum_bvalues_relative_u_worst_z[:, 1]*100, label="Uncorrected", facecolor="tab:blue", ls="", alpha=alpha_area)
-#axs[0,0].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 1]*100, y2=maximum_bvalues_relative_u_worst_z[:, 1]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
 # 50 Imaging
 axs[0,0].fill_between(z*1e3, y1=minimum_bvalues_relative_i_worst_z[:, 1]*100, y2=maximum_bvalues_relative_i_worst_z[:, 1]*100, label="Accounting for imaging", facecolor="tab:orange", ls="", alpha=alpha_area)
 axs[0,0].fill_between(z*1e3, y1=minimum_bvalues_relative_i_worst_z[:, 1]*100, y2=maximum_bvalues_relative_i_worst_z[:, 1]*100, color="tab:orange", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -784,13 +748,10 @@ axs[0,0].fill_between(z*1e3, y1=minimum_bvalues_relative_c_worst_z[:, 1]*100, y2
 axs[0,0].set_title("Nominal b = 50 s/mm$^2$")
 axs[0,0].set_ylabel("Relative b-value deviation [\%]")
 # Waveforms
-#plot_waveform_inset(angles_worst_u, 50, axs[0,0], legend_flag=True)
 
 # 200 Nominal
 axs[0,1].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
 # 200 Uncorrected
-#axs[0,1].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 2]*100, y2=maximum_bvalues_relative_u_worst_z[:, 2]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
-#axs[0,1].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 2]*100, y2=maximum_bvalues_relative_u_worst_z[:, 2]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
 # 200 Imaging
 axs[0,1].fill_between(z*1e3, y1=minimum_bvalues_relative_i_worst_z[:, 2]*100, y2=maximum_bvalues_relative_i_worst_z[:, 2]*100, facecolor="tab:orange", ls="", alpha=alpha_area)
 axs[0,1].fill_between(z*1e3, y1=minimum_bvalues_relative_i_worst_z[:, 2]*100, y2=maximum_bvalues_relative_i_worst_z[:, 2]*100, color="tab:orange", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -803,9 +764,6 @@ axs[0,1].set_title("Nominal b = 200 s/mm$^2$")
 
 # 800 Nominal
 axs[0,2].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
-# 800 Uncorrected
-#axs[0,2].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 3]*100, y2=maximum_bvalues_relative_u_worst_z[:, 3]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
-#axs[0,2].fill_between(z*1e3, y1=minimum_bvalues_relative_u_worst_z[:, 3]*100, y2=maximum_bvalues_relative_u_worst_z[:, 3]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
 # 800 Imaging
 axs[0,2].fill_between(z*1e3, y1=minimum_bvalues_relative_i_worst_z[:, 3]*100, y2=maximum_bvalues_relative_i_worst_z[:, 3]*100, facecolor="tab:orange", ls="", alpha=alpha_area)
 axs[0,2].fill_between(z*1e3, y1=minimum_bvalues_relative_i_worst_z[:, 3]*100, y2=maximum_bvalues_relative_i_worst_z[:, 3]*100, color="tab:orange", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -814,18 +772,11 @@ axs[0,2].fill_between(z*1e3, y1=minimum_bvalues_relative_c_worst_z[:, 3]*100, y2
 axs[0,2].fill_between(z*1e3, y1=minimum_bvalues_relative_c_worst_z[:, 3]*100, y2=maximum_bvalues_relative_c_worst_z[:, 3]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
 # Settings
 axs[0,2].set_title("Nominal b = 800 s/mm$^2$")
-#plot_waveform_inset(angles_worst_u, 800, axs[0,2])
-#axs[0,2].annotate("Maximum error\ndiffusion direction", (1.1, 83))
-#axs[0,2].annotate("Minimum error\ndiffusion direction", (1.1, -63))
 
 
 ### Optimal
-#xy = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 2.75e-3, 3e-3, 3.25e-3, 3.5e-3, 3.75e-3, 4e-3])
 # 50 Nominal
 axs[1,0].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
-# 50 Uncorrected
-#axs[1,0].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 1]*100, y2=maximum_bvalues_relative_u_best_z[:, 1]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
-#axs[1,0].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 1]*100, y2=maximum_bvalues_relative_u_best_z[:, 1]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
 # 50 Imaging
 axs[1,0].fill_between(z*1e3, y1=minimum_bvalues_relative_i_best_z[:, 1]*100, y2=maximum_bvalues_relative_i_best_z[:, 1]*100, facecolor="tab:orange", ls="", alpha=alpha_area)
 axs[1,0].fill_between(z*1e3, y1=minimum_bvalues_relative_i_best_z[:, 1]*100, y2=maximum_bvalues_relative_i_best_z[:, 1]*100, color="tab:orange", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -835,16 +786,12 @@ axs[1,0].fill_between(z*1e3, y1=minimum_bvalues_relative_c_best_z[:, 1]*100, y2=
 # Settings
 axs[1,0].set_ylabel("Relative b-value deviation [\%]")
 axs[1,0].set_xlabel("Isotropic resolution [mm]")
-#plot_waveform_inset(angles_best_u, 50, axs[1,0])
 colors = ["tab:orange", "tab:orange", "tab:blue", "tab:blue"]
 fig_2_inset(axs[1,0], z*1e3, colors, [1, 4], [-10, 10], areas=[minimum_bvalues_relative_i_best_z[:,1]*100, maximum_bvalues_relative_i_best_z[:,1]*100, minimum_bvalues_relative_c_best_z[:,1]*100, maximum_bvalues_relative_c_best_z[:,1]*100])
 
 
 # 200 Nominal
 axs[1,1].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0, (2,5)), lw=1.5)
-# 200 Uncorrected
-#axs[1,1].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 2]*100, y2=maximum_bvalues_relative_u_best_z[:, 2]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
-#axs[1,1].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 2]*100, y2=maximum_bvalues_relative_u_best_z[:, 2]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
 # 200 Imaging
 axs[1,1].fill_between(z*1e3, y1=minimum_bvalues_relative_i_best_z[:, 2]*100, y2=maximum_bvalues_relative_i_best_z[:, 2]*100, facecolor="tab:orange", ls="", alpha=alpha_area)
 axs[1,1].fill_between(z*1e3, y1=minimum_bvalues_relative_i_best_z[:, 2]*100, y2=maximum_bvalues_relative_i_best_z[:, 2]*100, color="tab:orange", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -858,9 +805,6 @@ fig_2_inset(axs[1,1], z*1e3, colors, [1, 4], [-10, 10], areas=[minimum_bvalues_r
 
 # 800 Nominal
 axs[1,2].plot(z*1e3, [0 for i in range(len(z))], color="black", ls=(0,(2,5)), lw=1.5)
-# 800 Uncorrected
-#axs[1,2].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 3]*100, y2=maximum_bvalues_relative_u_best_z[:, 3]*100, facecolor="tab:blue", ls="", alpha=alpha_area)
-#axs[1,2].fill_between(z*1e3, y1=minimum_bvalues_relative_u_best_z[:, 3]*100, y2=maximum_bvalues_relative_u_best_z[:, 3]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
 # 800 Imaging
 axs[1,2].fill_between(z*1e3, y1=minimum_bvalues_relative_i_best_z[:, 3]*100, y2=maximum_bvalues_relative_i_best_z[:, 3]*100, facecolor="tab:orange", ls="", alpha=alpha_area)
 axs[1,2].fill_between(z*1e3, y1=minimum_bvalues_relative_i_best_z[:, 3]*100, y2=maximum_bvalues_relative_i_best_z[:, 3]*100, color="tab:orange", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
@@ -869,7 +813,6 @@ axs[1,2].fill_between(z*1e3, y1=minimum_bvalues_relative_c_best_z[:, 3]*100, y2=
 axs[1,2].fill_between(z*1e3, y1=minimum_bvalues_relative_c_best_z[:, 3]*100, y2=maximum_bvalues_relative_c_best_z[:, 3]*100, color="tab:blue", facecolor="None", ls="-", alpha=alpha_lines, lw=lw)
 # Settings
 axs[1,2].set_xlabel("Isotropic resolution [mm]")
-#plot_waveform_inset(angles_best_u, 800, axs[1,2])
 fig_2_inset(axs[1,2], z*1e3, colors, [1, 4], [-10, 10], areas=[minimum_bvalues_relative_i_best_z[:,3]*100, maximum_bvalues_relative_i_best_z[:,3]*100, minimum_bvalues_relative_c_best_z[:,3]*100, maximum_bvalues_relative_c_best_z[:,3]*100])
 
 axs[0,0].set_xlim([1, 4])
