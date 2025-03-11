@@ -833,77 +833,8 @@ fig.text(-0.02, 0.5, "(b)", fontsize="18")
 #fig.savefig(os.path.join(fig_save_path, "Figure_2.pdf"), bbox_inches="tight")
 # %% Figure 3
 
-folder_best_case = "optimal_allCrushers_onlyCrushWhenNeeded_sequence"
-folder_worst_case = "allCrushers_sequence"
-
 z = np.array([2e-3, 3e-3, 4e-3, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 10e-3])
 xy = np.array([2e-3 for i in range(len(z))])
-
-#path_best = os.path.join(save_path, folder_best_case)
-#path_worst = os.path.join(save_path, folder_worst_case)
-
-path_test = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\bvalue simulations\test\optimal_allCrushers_onlyCrushWhenNeeded_sequence"
-
-#nom_b0 = np.array([3.])
-# 1000 dir sets
-#f_u_worst, Dstar_u_worst, D_u_worst, bvals_nom_u_worst, minimum_bvalues_u_worst_z, maximum_bvalues_u_worst_z = read_all_generic_simulation_logs(path_worst, correction="uncorrected", angles="ndir1000", xyres=xy, zres=z)
-#f_i_worst, Dstar_i_worst, D_i_worst, bvals_nom_i_worst, minimum_bvalues_i_worst_z, maximum_bvalues_i_worst_z = read_all_generic_simulation_logs(path_worst, correction="imaging_corrected", angles="ndir1000", xyres=xy, zres=z)
-#f_c_worst, Dstar_c_worst, D_c_worst, bvals_nom_c_worst, minimum_bvalues_c_worst_z, maximum_bvalues_c_worst_z = read_all_generic_simulation_logs(path_worst, correction="crossterm_corrected", angles="ndir1000", xyres=xy, zres=z)
-
-#f_u_best, Dstar_u_best, D_u_best, bvals_nom_u_best, minimum_bvalues_u_best_z, maximum_bvalues_u_best_z = read_all_generic_simulation_logs(path_best, correction="uncorrected", angles="ndir1000", xyres=xy, zres=z)
-#f_i_best, Dstar_i_best, D_i_best, bvals_nom_i_best, minimum_bvalues_i_best_z, maximum_bvalues_i_best_z = read_all_generic_simulation_logs(path_best, correction="imaging_corrected", angles="ndir1000", xyres=xy, zres=z)
-#f_c_best, Dstar_c_best, D_c_best, bvals_nom_c_best, minimum_bvalues_c_best_z, maximum_bvalues_c_best_z = read_all_generic_simulation_logs(path_best, correction="crossterm_corrected", angles="ndir1000", xyres=xy, zres=z)
-
-
-### Powder averages
-# Worst
-#f_u_xyz_worst, Dstar_u_xyz_worst, D_u_xyz_worst = powder_average_all_simulation_logs(path_worst, correction="uncorrected", angles="xyz", xyres=xy, zres=z) 
-#f_i_xyz_worst, Dstar_i_xyz_worst, D_i_xyz_worst = powder_average_all_simulation_logs(path_worst, correction="imaging_corrected", angles="xyz", xyres=xy, zres=z) 
-#f_c_xyz_worst, Dstar_c_xyz_worst, D_c_xyz_worst = powder_average_all_simulation_logs(path_worst, correction="crossterm_corrected", angles="xyz", xyres=xy, zres=z) 
-
-#f_u_xyz_antipodal_worst, Dstar_u_xyz_antipodal_worst, D_u_xyz_antipodal_worst = powder_average_all_simulation_logs(path_worst, correction="uncorrected", angles="xyz_antipodal", xyres=xy, zres=z) 
-#f_i_xyz_antipodal_worst, Dstar_i_xyz_antipodal_worst, D_i_xyz_antipodal_worst = powder_average_all_simulation_logs(path_worst, correction="imaging_corrected", angles="xyz_antipodal", xyres=xy, zres=z) 
-#f_c_xyz_antipodal_worst, Dstar_c_xyz_antipodal_worst, D_c_xyz_antipodal_worst = powder_average_all_simulation_logs(path_worst, correction="crossterm_corrected", angles="xyz_antipodal", xyres=xy, zres=z) 
-
-#f_u_GE_6_worst, Dstar_u_GE_6_worst, D_u_GE_6_worst = powder_average_all_simulation_logs(path_worst, correction="uncorrected", angles="GE_6", xyres=xy, zres=z) 
-#f_i_GE_6_worst, Dstar_i_GE_6_worst, D_i_GE_6_worst = powder_average_all_simulation_logs(path_worst, correction="imaging_corrected", angles="GE_6", xyres=xy, zres=z) 
-#f_c_GE_6_worst, Dstar_c_GE_6_worst, D_c_GE_6_worst = powder_average_all_simulation_logs(path_worst, correction="crossterm_corrected", angles="GE_6", xyres=xy, zres=z) 
-
-#f_u_GE_16_worst, Dstar_u_GE_16_worst, D_u_GE_16_worst = powder_average_all_simulation_logs(path_worst, correction="uncorrected", angles="GE_16", xyres=xy, zres=z) 
-#f_i_GE_16_worst, Dstar_i_GE_16_worst, D_i_GE_16_worst = powder_average_all_simulation_logs(path_worst, correction="imaging_corrected", angles="GE_16", xyres=xy, zres=z) 
-#f_c_GE_16_worst, Dstar_c_GE_16_worst, D_c_GE_16_worst = powder_average_all_simulation_logs(path_worst, correction="crossterm_corrected", angles="GE_16", xyres=xy, zres=z) 
-# Best
-#f_u_xyz_best, Dstar_u_xyz_best, D_u_xyz_best = powder_average_all_simulation_logs(path_best, correction="uncorrected", angles="xyz", xyres=xy, zres=z) 
-#f_i_xyz_best, Dstar_i_xyz_best, D_i_xyz_best = powder_average_all_simulation_logs(path_best, correction="imaging_corrected", angles="xyz", xyres=xy, zres=z) 
-#f_c_xyz_best, Dstar_c_xyz_best, D_c_xyz_best = powder_average_all_simulation_logs(path_best, correction="crossterm_corrected", angles="xyz", xyres=xy, zres=z) 
-
-#f_u_xyz_antipodal_best, Dstar_u_xyz_antipodal_best, D_u_xyz_antipodal_best = powder_average_all_simulation_logs_new(path_test, correction="uncorrected", angles="xyz_antipodal", xyres=xy, zres=z) 
-#f_i_xyz_antipodal_best, Dstar_i_xyz_antipodal_best, D_i_xyz_antipodal_best = powder_average_all_simulation_logs_new(path_test, correction="imaging_corrected", angles="xyz_antipodal", xyres=xy, zres=z) 
-#f_c_xyz_antipodal_best, Dstar_c_xyz_antipodal_best, D_c_xyz_antipodal_best = powder_average_all_simulation_logs_new(path_test, correction="crossterm_corrected", angles="xyz_antipodal", xyres=xy, zres=z) 
-
-f_u_xyz_antipodal_best_test, Dstar_u_xyz_antipodal_best_test, D_u_xyz_antipodal_best_test = powder_average_all_simulation_logs(path_test, correction="uncorrected", angles="xyz_antipodal", xyres=xy, zres=z) 
-
-#f_u_GE_6_best, Dstar_u_GE_6_best, D_u_GE_6_best = powder_average_all_simulation_logs(path_best, correction="uncorrected", angles="GE_6", xyres=xy, zres=z) 
-#f_i_GE_6_best, Dstar_i_GE_6_best, D_i_GE_6_best = powder_average_all_simulation_logs(path_best, correction="imaging_corrected", angles="GE_6", xyres=xy, zres=z) 
-#f_c_GE_6_best, Dstar_c_GE_6_best, D_c_GE_6_best = powder_average_all_simulation_logs(path_best, correction="crossterm_corrected", angles="GE_6", xyres=xy, zres=z) 
-
-#f_u_GE_16_best, Dstar_u_GE_16_best, D_u_GE_16_best = powder_average_all_simulation_logs(path_best, correction="uncorrected", angles="GE_16", xyres=xy, zres=z) 
-#f_i_GE_16_best, Dstar_i_GE_16_best, D_i_GE_16_best = powder_average_all_simulation_logs(path_best, correction="imaging_corrected", angles="GE_16", xyres=xy, zres=z) 
-#f_c_GE_16_best, Dstar_c_GE_16_best, D_c_GE_16_best = powder_average_all_simulation_logs(path_best, correction="crossterm_corrected", angles="GE_16", xyres=xy, zres=z) 
-
-
-## NEW
-path_best = os.path.join(save_path, "20241101", folder_best_case)
-path_worst = os.path.join(save_path, "20241101", folder_worst_case)
-
-# Froeling 200dir sets
-#f_u_worst, Dstar_u_worst, D_u_worst, bvals_nom_u_worst, minimum_bvalues_u_worst_z, maximum_bvalues_u_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="uncorrected", angles="froeling_200", xyres=xy, zres=z)
-#f_i_worst, Dstar_i_worst, D_i_worst, bvals_nom_i_worst, minimum_bvalues_i_worst_z, maximum_bvalues_i_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="imaging_corrected", angles="froeling_200", xyres=xy, zres=z)
-#f_c_worst, Dstar_c_worst, D_c_worst, bvals_nom_c_worst, minimum_bvalues_c_worst_z, maximum_bvalues_c_worst_z = read_all_generic_simulation_logs_uvecs(path_worst, correction="crossterm_corrected", angles="froeling_200", xyres=xy, zres=z)
-
-#f_u_best, Dstar_u_best, D_u_best, bvals_nom_u_best, minimum_bvalues_u_best_z, maximum_bvalues_u_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="uncorrected", angles="froeling_200", xyres=xy, zres=z)
-#f_i_best, Dstar_i_best, D_i_best, bvals_nom_i_best, minimum_bvalues_i_best_z, maximum_bvalues_i_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="imaging_corrected", angles="froeling_200", xyres=xy, zres=z)
-#f_c_best, Dstar_c_best, D_c_best, bvals_nom_c_best, minimum_bvalues_c_best_z, maximum_bvalues_c_best_z = read_all_generic_simulation_logs_uvecs(path_best, correction="crossterm_corrected", angles="froeling_200", xyres=xy, zres=z)
 
 # Worst
 f_u_xyz_worst, Dstar_u_xyz_worst, D_u_xyz_worst = powder_average_all_simulation_logs_new(path_worst, correction="uncorrected", angles="xyz", xyres=xy, zres=z) 
@@ -926,8 +857,6 @@ f_c_xyz_antipodal_best, Dstar_c_xyz_antipodal_best, D_c_xyz_antipodal_best = pow
 
 def fig_3_inset(ax, x_axis, pwd_avg_lines, linestyles, colors, xlim, ylim, position=[0.45, 0.65, 0.5, 0.3], areas=None):
     axins = ax.inset_axes(position, xlim=xlim, ylim=ylim)
-
-
 
     for line_idx in range(len(pwd_avg_lines)):
         if linestyles[line_idx] == (0, (2,5)):
@@ -970,33 +899,13 @@ alpha_lines = 1
 ###### Worst-case
 ### f
 # Nominal
-#axs[0,0].plot(z*1e3, f_u_worst[:,1]*100, color="black", label="Reference", ls=(0, (2, 5)), lw=2)
 axs[0,0].plot(z*1e3, f_reference*100, color="black", label="Reference", ls=(0, (2, 5)), lw=2)
-# Uncorrected
-#axs[0,0].fill_between(x=z*1e3, y1=f_u_worst[:,0]*100, y2=f_u_worst[:,2]*100, facecolor="tab:blue", alpha=alpha_area, ls="", label="Uncorrected")
-#axs[0,0].fill_between(x=z*1e3, y1=f_u_worst[:,0]*100, y2=f_u_worst[:,2]*100, color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Imaging corrected
-#axs[0,0].fill_between(x=z*1e3, y1=f_i_worst[:,0]*100, y2=f_i_worst[:,2]*100, facecolor="tab:orange", alpha=alpha_area, ls="", label="Accounting for imaging")
-#axs[0,0].fill_between(x=z*1e3, y1=f_i_worst[:,0]*100, y2=f_i_worst[:,2]*100, color="tab:orange", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Cross-term corrected
-#axs[0,0].fill_between(x=z*1e3, y1=f_c_worst[:,0]*100, y2=f_c_worst[:,2]*100, facecolor="tab:green", alpha=alpha_area, ls="", label="Accounting for cross-terms")
-#axs[0,0].fill_between(x=z*1e3, y1=f_c_worst[:,0]*100, y2=f_c_worst[:,2]*100, color="tab:green", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
 # Powder avgs xyz
 axs[0,0].plot(z*1e3, f_u_xyz_worst*100, color="tab:blue", ls=ls_blue, label="[x,y,z] nominal", lw=lw)
 axs[0,0].plot(z*1e3, f_i_xyz_worst*100, color="tab:orange", ls=ls_orange, label="[x,y,z] + img", lw=lw)
-#axs[0,0].plot(z*1e3, f_c_xyz_worst*100, color="tab:green", ls=ls_green, label="[x,y,z] + im + ct", lw=lw)
-
-#axs[0,0].plot(z*1e3, f_u_GE_6_worst*100, color="tab:blue", ls=(0, (5,5)), label="6 dir", lw=lw)
-#axs[0,0].plot(z*1e3, f_i_GE_6_worst*100, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,0].plot(z*1e3, f_c_GE_6_worst*100, color="tab:green", ls=(0, (5,5)), label="", lw=lw)
-
-#axs[0,0].plot(z*1e3, f_u_GE_16_worst*100, color="tab:blue", ls="-", label="16 dir", lw=lw)
-#axs[0,0].plot(z*1e3, f_i_GE_16_worst*100, color="tab:orange", ls="-", label="", lw=lw)
-#axs[0,0].plot(z*1e3, f_c_GE_16_worst*100, color="tab:green", ls="-", label="", lw=lw)
 
 axs[0,0].plot(z*1e3, f_u_xyz_antipodal_worst*100, color="tab:blue", ls=linestyles[3], label="[x,y,z,-x,-y,-z] nominal", lw=lw)
 axs[0,0].plot(z*1e3, f_i_xyz_antipodal_worst*100, color="tab:orange", ls=linestyles[4], label="[x,y,z,-x,-y,-z] + img", lw=lw)
-#axs[0,0].plot(z*1e3, f_c_xyz_antipodal_worst*100, color="tab:green", ls="-", label="[x,y,z,-x,-y,-z] + im + ct", lw=lw_straight)
 
 # Settings
 axs[0,0].set_ylabel("$f$ [\%]")
@@ -1004,33 +913,13 @@ axs[0,0].set_ylim([9.4, 10.6])
 
 ### D*
 # Nominal
-#axs[0,1].plot(z*1e3, Dstar_u_worst[:,1], color="black", ls=(0, (2, 5)), lw=2)
 axs[0,1].plot(z*1e3, Dstar_reference, color="black", ls=(0, (2, 5)), lw=2)
-# Uncorrected
-#axs[0,1].fill_between(x=z*1e3, y1=Dstar_u_worst[:,0], y2=Dstar_u_worst[:,2], facecolor="tab:blue", alpha=alpha_area, ls="")
-#axs[0,1].fill_between(x=z*1e3, y1=Dstar_u_worst[:,0], y2=Dstar_u_worst[:,2], color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Imaging corrected
-#axs[0,1].fill_between(x=z*1e3, y1=Dstar_i_worst[:,0], y2=Dstar_i_worst[:,2], facecolor="tab:orange", alpha=alpha_area, ls="")
-#axs[0,1].fill_between(x=z*1e3, y1=Dstar_i_worst[:,0], y2=Dstar_i_worst[:,2], color="tab:orange", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Cross-term corrected
-#axs[0,1].fill_between(x=z*1e3, y1=Dstar_c_worst[:,0], y2=Dstar_c_worst[:,2], facecolor="tab:green", alpha=alpha_area, ls="")
-#axs[0,1].fill_between(x=z*1e3, y1=Dstar_c_worst[:,0], y2=Dstar_c_worst[:,2], color="tab:green", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
 # Powder avgs xyz
 axs[0,1].plot(z*1e3, Dstar_u_xyz_worst, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[0,1].plot(z*1e3, Dstar_i_xyz_worst, color="tab:orange", ls=ls_orange, label="", lw=lw)
-#axs[0,1].plot(z*1e3, Dstar_c_xyz_worst, color="tab:green", ls=ls_green, label="", lw=lw)
-
-#axs[0,1].plot(z*1e3, Dstar_u_GE_6_worst, color="tab:blue", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,1].plot(z*1e3, Dstar_i_GE_6_worst, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,1].plot(z*1e3, Dstar_c_GE_6_worst, color="tab:green", ls=(0, (5,5)), label="", lw=lw)
-
-#axs[0,1].plot(z*1e3, Dstar_u_GE_16_worst, color="tab:blue", ls="-", label="", lw=lw)
-#axs[0,1].plot(z*1e3, Dstar_i_GE_16_worst, color="tab:orange", ls="-", label="", lw=lw)
-#axs[0,1].plot(z*1e3, Dstar_c_GE_16_worst, color="tab:green", ls="-", label="", lw=lw)
 
 axs[0,1].plot(z*1e3, Dstar_u_xyz_antipodal_worst, color="tab:blue", ls=linestyles[3], label="", lw=lw)
 axs[0,1].plot(z*1e3, Dstar_i_xyz_antipodal_worst, color="tab:orange", ls=linestyles[4], label="", lw=lw)
-#axs[0,1].plot(z*1e3, Dstar_c_xyz_antipodal_worst, color="tab:green", ls="-", label="", lw=lw_straight)
 # Settings
 axs[0,1].set_ylabel("$D$* [µm$^2$/ms]")
 axs[0,1].set_ylim([15, 25])
@@ -1038,31 +927,12 @@ axs[0,1].set_ylim([15, 25])
 ### D
 # Nominal
 axs[0,2].plot(z*1e3, D_reference, color="black", ls=(0, (2, 5)), lw=2)
-# Uncorrected
-#axs[0,2].fill_between(x=z*1e3, y1=D_u_worst[:,0], y2=D_u_worst[:,2], facecolor="tab:blue", alpha=alpha_area, ls="")
-#axs[0,2].fill_between(x=z*1e3, y1=D_u_worst[:,0], y2=D_u_worst[:,2], color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Imaging corrected
-#axs[0,2].fill_between(x=z*1e3, y1=D_i_worst[:,0], y2=D_i_worst[:,2], facecolor="tab:orange", alpha=alpha_area, ls="")
-#axs[0,2].fill_between(x=z*1e3, y1=D_i_worst[:,0], y2=D_i_worst[:,2], color="tab:orange", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Cross-term corrected
-#axs[0,2].fill_between(x=z*1e3, y1=D_c_worst[:,0], y2=D_c_worst[:,2], facecolor="tab:green", alpha=alpha_area, ls="")
-#axs[0,2].fill_between(x=z*1e3, y1=D_c_worst[:,0], y2=D_c_worst[:,2], color="tab:green", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
 # Powder avgs xyz
 axs[0,2].plot(z*1e3, D_u_xyz_worst, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[0,2].plot(z*1e3, D_i_xyz_worst, color="tab:orange", ls=ls_orange, label="", lw=lw)
-#axs[0,2].plot(z*1e3, D_c_xyz_worst, color="tab:green", ls=ls_green, label="", lw=lw)
-
-#axs[0,2].plot(z*1e3, D_u_GE_6_worst, color="tab:blue", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,2].plot(z*1e3, D_i_GE_6_worst, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,2].plot(z*1e3, D_c_GE_6_worst, color="tab:green", ls=(0, (5,5)), label="", lw=lw)
-
-#axs[0,2].plot(z*1e3, D_u_GE_16_worst, color="tab:blue", ls="-", label="", lw=lw)
-#axs[0,2].plot(z*1e3, D_i_GE_16_worst, color="tab:orange", ls="-", label="", lw=lw)
-#axs[0,2].plot(z*1e3, D_c_GE_16_worst, color="tab:green", ls="-", label="", lw=lw)
 
 axs[0,2].plot(z*1e3, D_u_xyz_antipodal_worst, color="tab:blue", ls=linestyles[3], label="", lw=lw)
 axs[0,2].plot(z*1e3, D_i_xyz_antipodal_worst, color="tab:orange", ls=linestyles[4], label="", lw=lw)
-#axs[0,2].plot(z*1e3, D_c_xyz_antipodal_worst, color="tab:green", ls="-", label="", lw=lw_straight)
 # Settings
 axs[0,2].set_ylabel("$D$ [µm$^2$/ms]")
 axs[0,2].set_ylim([0.95,1.05])
@@ -1072,74 +942,29 @@ axs[0,2].set_xlim(2, 10)
 ### f
 # Nominal
 axs[1,0].plot(z*1e3, f_reference*1e2, color="black", ls=(0, (2,5)), lw=2)
-# Uncorrected
-#axs[1,0].fill_between(x=z*1e3, y1=f_u_best[:,0]*100, y2=f_u_best[:,2]*100, facecolor="tab:blue", alpha=alpha_area, ls="")
-#axs[1,0].fill_between(x=z*1e3, y1=f_u_best[:,0]*100, y2=f_u_best[:,2]*100, color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Imaging corrected
-#axs[1,0].fill_between(x=z*1e3, y1=f_i_best[:,0]*100, y2=f_i_best[:,2]*100, facecolor="tab:orange", alpha=alpha_area, ls="")
-#axs[1,0].fill_between(x=z*1e3, y1=f_i_best[:,0]*100, y2=f_i_best[:,2]*100, color="tab:orange", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Cross-term corrected
-#axs[1,0].fill_between(x=z*1e3, y1=f_c_best[:,0]*100, y2=f_c_best[:,2]*100, facecolor="tab:green", alpha=alpha_area, ls="")
-#axs[1,0].fill_between(x=z*1e3, y1=f_c_best[:,0]*100, y2=f_c_best[:,2]*100, color="tab:green", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
 # Powder avgs xyz
 axs[1,0].plot(z*1e3, f_u_xyz_best*100, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[1,0].plot(z*1e3, f_i_xyz_best*100, color="tab:orange", ls=ls_orange, label="", lw=lw)
-#axs[1,0].plot(z*1e3, f_c_xyz_best*100, color="tab:green", ls=ls_green, label="", lw=lw)
-
-#axs[1,0].plot(z*1e3, f_u_GE_6_worst*100, color="tab:blue", ls=(0, (5,5)), label="6 dir", lw=lw)
-#axs[1,0].plot(z*1e3, f_i_GE_6_worst*100, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
-#axs[1,0].plot(z*1e3, f_c_GE_6_worst*100, color="tab:green", ls=(0, (5,5)), label="", lw=lw)
-
-#axs[1,0].plot(z*1e3, f_u_GE_16_best*100, color="tab:blue", ls="-", label="", lw=lw)
-#axs[1,0].plot(z*1e3, f_i_GE_16_best*100, color="tab:orange", ls="-", label="", lw=lw)
-#axs[1,0].plot(z*1e3, f_c_GE_16_best*100, color="tab:green", ls="-", label="", lw=lw)
 
 axs[1,0].plot(z*1e3, f_u_xyz_antipodal_best*100, color="tab:blue", ls=linestyles[3], label="", lw=lw)
 axs[1,0].plot(z*1e3, f_i_xyz_antipodal_best*100, color="tab:orange", ls=linestyles[4], label="", lw=lw)
-#axs[1,0].plot(z*1e3, f_c_xyz_antipodal_best*100, color="tab:green", ls="-", label="", lw=lw_straight)
-
-# TEST
-#axs[1,0].plot(z*1e3, f_u_xyz_antipodal_best_test*100, color="tab:red", ls="-", label="", lw=lw+1)
 # Settings
 axs[1,0].set_ylabel("$f$ [\%]")
 axs[1,0].set_xlabel("Slice thickness [mm]")
 axs[1,0].set_ylim([9.4, 10.6])
 # Inset
-#f_pwd_avg_lines = [f_reference*100, f_u_xyz_best*100, f_i_xyz_best*100, f_c_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100, f_c_xyz_antipodal_best*100]
 f_pwd_avg_lines = [f_reference*100, f_u_xyz_best*100, f_i_xyz_best*100, f_u_xyz_antipodal_best*100, f_i_xyz_antipodal_best*100]
 fig_3_inset(axs[1,0], z*1e3, pwd_avg_lines=f_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 6), ylim=(9.95, 10.05))
 
 ### D*
 # Nominal
 axs[1,1].plot(z*1e3, Dstar_reference, color="black", ls=(0, (2,5)), lw=2)
-# Uncorrected
-#axs[1,1].fill_between(x=z*1e3, y1=Dstar_u_best[:,0], y2=Dstar_u_best[:,2], facecolor="tab:blue", alpha=alpha_area, ls="")
-#axs[1,1].fill_between(x=z*1e3, y1=Dstar_u_best[:,0], y2=Dstar_u_best[:,2], color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Imaging corrected
-#axs[1,1].fill_between(x=z*1e3, y1=Dstar_i_best[:,0], y2=Dstar_i_best[:,2], facecolor="tab:orange", alpha=alpha_area, ls="")
-#axs[1,1].fill_between(x=z*1e3, y1=Dstar_i_best[:,0], y2=Dstar_i_best[:,2], color="tab:orange", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Cross-term corrected
-#axs[1,1].fill_between(x=z*1e3, y1=Dstar_c_best[:,0], y2=Dstar_c_best[:,2], facecolor="tab:green", alpha=alpha_area, ls="")
-#axs[1,1].fill_between(x=z*1e3, y1=Dstar_c_best[:,0], y2=Dstar_c_best[:,2], color="tab:green", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
 # Powder avgs xyz
 axs[1,1].plot(z*1e3, Dstar_u_xyz_best, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[1,1].plot(z*1e3, Dstar_i_xyz_best, color="tab:orange", ls=ls_orange, label="", lw=lw)
-#axs[1,1].plot(z*1e3, Dstar_c_xyz_best, color="tab:green", ls=ls_green, label="", lw=lw)
-
-#axs[0,1].plot(z*1e3, Dstar_u_GE_6_best, color="tab:blue", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,1].plot(z*1e3, Dstar_i_GE_6_best, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,1].plot(z*1e3, Dstar_c_GE_6_best, color="tab:green", ls=(0, (5,5)), label="", lw=lw)
-
-#axs[1,1].plot(z*1e3, Dstar_u_GE_16_best, color="tab:blue", ls="-", label="", lw=lw)
-#axs[1,1].plot(z*1e3, Dstar_i_GE_16_best, color="tab:orange", ls="-", label="", lw=lw)
-#axs[1,1].plot(z*1e3, Dstar_c_GE_16_best, color="tab:green", ls="-", label="", lw=lw)
 
 axs[1,1].plot(z*1e3, Dstar_u_xyz_antipodal_best, color="tab:blue", ls=linestyles[3], label="", lw=lw)
 axs[1,1].plot(z*1e3, Dstar_i_xyz_antipodal_best, color="tab:orange", ls=linestyles[4], label="", lw=lw)
-#axs[1,1].plot(z*1e3, Dstar_c_xyz_antipodal_best, color="tab:green", ls="-", label="", lw=lw_straight)
-
-# TEST
-#axs[1,1].plot(z*1e3, Dstar_u_xyz_antipodal_best_test, color="tab:red", ls="-", label="", lw=lw+1)
 # Settings
 axs[1,1].set_ylabel("$D$* [µm$^2$/ms]")
 axs[1,1].set_xlabel("Slice thickness [mm]")
@@ -1151,34 +976,12 @@ fig_3_inset(axs[1,1], z*1e3, pwd_avg_lines=Dstar_pwd_avg_lines, linestyles=lines
 ### D
 # Nominal
 axs[1,2].plot(z*1e3, D_reference, color="black", ls=(0, (2,5)), lw=2)
-# Uncorrected
-#axs[1,2].fill_between(x=z*1e3, y1=D_u_best[:,0], y2=D_u_best[:,2], facecolor="tab:blue", alpha=alpha_area, ls="")
-#axs[1,2].fill_between(x=z*1e3, y1=D_u_best[:,0], y2=D_u_best[:,2], color="tab:blue", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Imaging corrected
-#axs[1,2].fill_between(x=z*1e3, y1=D_i_best[:,0], y2=D_i_best[:,2], facecolor="tab:orange", alpha=alpha_area, ls="")
-#axs[1,2].fill_between(x=z*1e3, y1=D_i_best[:,0], y2=D_i_best[:,2], color="tab:orange", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
-# Cross-term corrected
-#axs[1,2].fill_between(x=z*1e3, y1=D_c_best[:,0], y2=D_c_best[:,2], facecolor="tab:green", alpha=alpha_area, ls="")
-#axs[1,2].fill_between(x=z*1e3, y1=D_c_best[:,0], y2=D_c_best[:,2], color="tab:green", facecolor="None", alpha=alpha_lines, ls="-", lw=lw)
 # Powder avgs xyz
 axs[1,2].plot(z*1e3, D_u_xyz_best, color="tab:blue", ls=ls_blue, label="", lw=lw)
 axs[1,2].plot(z*1e3, D_i_xyz_best, color="tab:orange", ls=ls_orange, label="", lw=lw)
-#axs[1,2].plot(z*1e3, D_c_xyz_best, color="tab:green", ls=ls_green, label="", lw=lw)
-
-#axs[0,2].plot(z*1e3, D_u_GE_6_best, color="tab:blue", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,2].plot(z*1e3, D_i_GE_6_best, color="tab:orange", ls=(0, (5,5)), label="", lw=lw)
-#axs[0,2].plot(z*1e3, D_c_GE_6_best, color="tab:green", ls=(0, (5,5)), label="", lw=lw)
-
-#axs[1,2].plot(z*1e3, D_u_GE_16_best, color="tab:blue", ls="-", label="", lw=lw)
-#axs[1,2].plot(z*1e3, D_i_GE_16_best, color="tab:orange", ls="-", label="", lw=lw)
-#axs[1,2].plot(z*1e3, D_c_GE_16_best, color="tab:green", ls="-", label="", lw=lw)
 
 axs[1,2].plot(z*1e3, D_u_xyz_antipodal_best, color="tab:blue", ls=linestyles[3], label="", lw=lw)
 axs[1,2].plot(z*1e3, D_i_xyz_antipodal_best, color="tab:orange", ls=linestyles[4], label="", lw=lw)
-#axs[1,2].plot(z*1e3, D_c_xyz_antipodal_best, color="tab:green", ls="-", label="", lw=lw_straight)
-
-# TEST
-#axs[1,2].plot(z*1e3, D_u_xyz_antipodal_best_test, color="tab:red", ls="-", label="", lw=lw+1)
 # Settings
 axs[1,2].set_ylabel("$D$ [µm$^2$/ms]")
 axs[1,2].set_xlabel("Slice thickness [mm]")
@@ -1187,22 +990,8 @@ axs[1,2].set_ylim([0.95,1.05])
 D_pwd_avg_lines = [D_reference, D_u_xyz_best, D_i_xyz_best, D_u_xyz_antipodal_best, D_i_xyz_antipodal_best]
 fig_3_inset(axs[1,2], z*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(2, 6), ylim=(0.995, 1.005))
 
-#fig.suptitle("Well-designed sequence")
-#fig.legend(loc=(.09, -.005), ncols=4, frameon=False)
-#fig.legend(loc=(0, -.005), ncols=7, frameon=False)
-#fig.legend(loc=(0.02, -.005), ncols=5, frameon=False)
 fig.legend(loc=(0.015, -.005), ncols=5, frameon=False)
 handles, labels = axs[0,0].get_legend_handles_labels()
-#handles_reordered = [handles[1], handles[4], handles[2], handles[5], handles[3], handles[6], handles[0]]
-#labels_reordered = [labels[1], labels[4], labels[2], labels[5], labels[3], labels[6], labels[0]]
-#fig.legend(handles_reordered, labels_reordered, loc=(0.045, -.025), ncols=4, frameon=False)
-#fig.legend(handles_reordered, labels_reordered, ncols=4, frameon=False, bbox_to_anchor=[0.99,0.035])
-#fig.tight_layout()
-#fig.text(1, .75, "Large cross-terms")
-#fig.text(.99, .7, "Large cross-terms")
-#fig.text(.99, .3, "Minimal cross-terms")
-#fig.suptitle("IVIM parameter ranges vs. slice thickness", x=.53, y=1.02)
-#fig.suptitle("IVIM parameter ranges vs. slice thickness", x=.53, y=0.95)
 fig.text(0, 0.9525, "(a)", fontsize=18)
 fig.text(0, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
