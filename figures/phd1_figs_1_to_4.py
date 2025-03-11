@@ -26,7 +26,10 @@ plt.rcParams["font.size"] = 13
 
 nominal_bvalues = [800, 700, 600, 500, 400, 300, 200, 175, 150, 125, 100, 90, 80, 70, 60, 50, 45, 40, 35, 30, 25, 20, 15, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 
-save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\bvalue simulations"
+# Path to repository
+save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\PhD1_IVIM_bvalue_bias"
+
+# Path to folder where figures will be saved
 fig_save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\figures"
 
 folder_best_case = "optimal_allCrushers_onlyCrushWhenNeeded_sequence"
@@ -332,17 +335,17 @@ def powder_average_all_simulation_logs_new(path, correction="uncorrected", angle
 # %% Figure 1
 
 
-uncorrected_optimal = r"20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_froeling_200_xy0.001_z0.001"
-cross_terms_optimal = r"20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_froeling_200_xy0.001_z0.001"
+uncorrected_optimal = r"simulation_data\figs_1_to_4\optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_froeling_200_xy0.001_z0.001"
+cross_terms_optimal = r"simulation_data\figs_1_to_4\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_froeling_200_xy0.001_z0.001"
 
-uncorrected_bad = r"20241101\allCrushers_sequence\uncorrected_froeling_200_xy0.001_z0.001"
-cross_terms_bad = r"20241101\allCrushers_sequence\crossterm_corrected_froeling_200_xy0.001_z0.001"
+uncorrected_bad = r"simulation_data\figs_1_to_4\allCrushers_sequence\uncorrected_froeling_200_xy0.001_z0.001"
+cross_terms_bad = r"simulation_data\figs_1_to_4\allCrushers_sequence\crossterm_corrected_froeling_200_xy0.001_z0.001"
 
-powder_average_xyz_optimal = r"20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_xyz_xy0.001_z0.001"
-powder_average_xyz_bad = r"20241101\allCrushers_sequence\crossterm_corrected_xyz_xy0.001_z0.001"
+powder_average_xyz_optimal = r"simulation_data\figs_1_to_4\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_xyz_xy0.001_z0.001"
+powder_average_xyz_bad = r"simulation_data\figs_1_to_4\allCrushers_sequence\crossterm_corrected_xyz_xy0.001_z0.001"
 
-powder_average_xyz_antipodal_optimal = r"20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_xyz_antipodal_xy0.001_z0.001"
-powder_average_xyz_antipodal_bad = r"20241101\allCrushers_sequence\crossterm_corrected_xyz_antipodal_xy0.001_z0.001"
+powder_average_xyz_antipodal_optimal = r"simulation_data\figs_1_to_4\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_xyz_antipodal_xy0.001_z0.001"
+powder_average_xyz_antipodal_bad = r"simulation_data\figs_1_to_4\allCrushers_sequence\crossterm_corrected_xyz_antipodal_xy0.001_z0.001"
 
 nominal_b = np.flip(np.array(nominal_bvalues))
 
