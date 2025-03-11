@@ -462,15 +462,15 @@ def fig1_sequence(ax_column, sequence_design, plot_title, legend_flag=False, lab
 
     if sequence_design == "optimal":
         axins_sequence.annotate("Crushers only when needed", (15000,-15e-3), fontsize=11)
-        axins_sequence.annotate(text="", xy=(14800, -10e-3), xytext=(12000, -2e-3), arrowprops=dict(arrowstyle="<-"))
+        axins_sequence.annotate(text="", xy=(14800, -12e-3), xytext=(12000, -2e-3), arrowprops=dict(arrowstyle="<-", connectionstyle="arc3,rad=0.2"))
 
 
         axins_sequence.annotate("Immediate rewinding", (7000,-33e-3), fontsize=11)
-        axins_sequence.annotate(text="", xy=(6500, -25e-3), xytext=(2500, -15e-3), arrowprops=dict(arrowstyle="<-"))
+        axins_sequence.annotate(text="", xy=(6800, -29e-3), xytext=(2500, -17e-3), arrowprops=dict(arrowstyle="<-", connectionstyle="arc3,rad=0.2"))
 
     if sequence_design == "bad":
         axins_sequence.annotate("Slice rewinder\nmerged with crusher", xy=(16000, 33e-3), fontsize=11)
-        axins_sequence.annotate(text="", xy=(15500, 41e-3), xytext=(10700, 25e-3), arrowprops=dict(arrowstyle="<-"), annotation_clip=False)
+        axins_sequence.annotate(text="", xy=(15500, 41e-3), xytext=(10900, 25e-3), arrowprops=dict(arrowstyle="<-", connectionstyle="arc3,rad=-0.3"), annotation_clip=False)
 
 
     axins_sequence.set_ylim(-33e-3, 33e-3)
