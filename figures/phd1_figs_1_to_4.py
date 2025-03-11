@@ -333,11 +333,9 @@ def powder_average_all_simulation_logs_new(path, correction="uncorrected", angle
 
 
 uncorrected_optimal = r"20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_froeling_200_xy0.001_z0.001"
-#imaging_optimal = r"optimal_allCrushers_onlyCrushWhenNeeded_sequence\imaging_corrected_ndir1000_xy0.001_z0.001"
 cross_terms_optimal = r"20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_froeling_200_xy0.001_z0.001"
 
 uncorrected_bad = r"20241101\allCrushers_sequence\uncorrected_froeling_200_xy0.001_z0.001"
-#imaging_bad = r"allCrushers_sequence\imaging_corrected_ndir1000_xy0.001_z0.001"
 cross_terms_bad = r"20241101\allCrushers_sequence\crossterm_corrected_froeling_200_xy0.001_z0.001"
 
 powder_average_xyz_optimal = r"20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_xyz_xy0.001_z0.001"
@@ -346,32 +344,6 @@ powder_average_xyz_bad = r"20241101\allCrushers_sequence\crossterm_corrected_xyz
 powder_average_xyz_antipodal_optimal = r"20241101\optimal_allCrushers_onlyCrushWhenNeeded_sequence\crossterm_corrected_xyz_antipodal_xy0.001_z0.001"
 powder_average_xyz_antipodal_bad = r"20241101\allCrushers_sequence\crossterm_corrected_xyz_antipodal_xy0.001_z0.001"
 
-#powder_average_xyz_antipodal_optimal = r"optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_xyz_antipodal_xy0.001_z0.001"
-#powder_average_xyz_antipodal_bad = r"allCrushers_sequence\uncorrected_xyz_antipodal_xy0.001_z0.001"
-
-#powder_average_xy_z_optimal = r"optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_xy-z_xy0.001_z0.001"
-#powder_average_xy_z_bad = r"allCrushers_sequence\uncorrected_xy-z_xy0.001_z0.001"
-
-#powder_average_filip_optimal = r"optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_uvec_elstat_6_filip_xy0.001_z0.001"
-#powder_average_filip_bad = r"allCrushers_sequence\uncorrected_uvec_elstat_6_filip_xy0.001_z0.001"
-
-#powder_average_GE_6_optimal = r"optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_GE_6_xy0.001_z0.001"
-#powder_average_GE_6_bad = r"allCrushers_sequence\uncorrected_GE_6_xy0.001_z0.001"
-
-#powder_average_GE_16_optimal = r"optimal_allCrushers_onlyCrushWhenNeeded_sequence\uncorrected_GE_16_xy0.001_z0.001"
-#powder_average_GE_16_bad = r"allCrushers_sequence\uncorrected_GE_16_xy0.001_z0.001"
-
-#worst_bvalues, worst_angles = simulate_pulse_sequences.find_worst_case_waveforms(save_path, file_imaging, plot=False)
-#lower_b = np.hstack((worst_bvalues[0][-1], worst_bvalues[0][0:-1]))
-#upper_b = np.hstack((worst_bvalues[1][-1], worst_bvalues[1][0:-1]))
-#nominal_bvalues = np.array(nominal_bvalues)
-#nominal_b = np.hstack((nominal_bvalues[-1], nominal_bvalues[0:-1]))
-
-#Dstar = 0.03
-#signals_lower = simulate_pulse_sequences.ivim_signal(lower_b, Dstar=Dstar)
-#signals_upper = simulate_pulse_sequences.ivim_signal(upper_b, Dstar=Dstar)
-#signals_nominal = simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=Dstar)
-#nominal_b = np.hstack((nominal_bvalues[-1], nominal_bvalues[0:-1]))
 nominal_b = np.flip(np.array(nominal_bvalues))
 
 fig, axs = plt.subplots(nrows=2, ncols=2, sharey=False, figsize=(9,5), height_ratios=[1,3])
@@ -382,20 +354,11 @@ def fig1_subplot(uncorrected_fname, fig, ax_column, plot_title, sequence_design,
 
     ax.plot(nominal_b, simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=0.02), color="black", label=labels[0], linewidth=1.5, ls=(0,(2,5)))
     uncorrected_lower, uncorrected_upper = read_simulation_log(uncorrected_fname, ax=None, label="Uncorrected", alpha=0.2)
-    #imaging_corrected_lower, imaging_corrected_upper = read_simulation_log(imaging_fname, ax=None, label="Corrected for imaging", color="yellow", alpha=0.2)
-    #crossterm_corrected_lower, crossterm_corrected_upper = read_simulation_log(cross_terms_fname, ax=None, label="Corrected for cross terms", color="green", alpha=0.4)
-    #powder_averaged_signals = bval_calc_tools.powder_average_signals_from_file(os.path.join(save_path, uncorrected_fname))
 
     ax.plot(nominal_b, uncorrected_lower, ls="")
     ax.plot(nominal_b, uncorrected_upper, ls="")
-    #ax.plot(nominal_b, imaging_corrected_lower, ls="")
-    #ax.plot(nominal_b, imaging_corrected_upper, ls="")
-    #ax.plot(nominal_b, crossterm_corrected_lower, ls="")
-    #ax.plot(nominal_b, crossterm_corrected_upper, ls="")
-    #ax.plot(nominal_b, powder_averaged_signals, ls="-", color="tab:blue", label=labels[2], alpha=1, lw=1)
     ax.set_yscale("log")
 
-    #formatter = matplotlib.ticker.FuncFormatter(lambda y,pos: ('{{:.{:1d}f}}'.format(int(np.maximum(-np.log10(y),1)))).format(y))
     formatter = matplotlib.ticker.ScalarFormatter()
     formatter.set_scientific(False)
     ax.yaxis.set_major_formatter(formatter)
@@ -403,41 +366,13 @@ def fig1_subplot(uncorrected_fname, fig, ax_column, plot_title, sequence_design,
 
     # Uncorrected
     ax.fill_between(x=nominal_b, y1=uncorrected_upper, y2=uncorrected_lower, alpha=.4, ls="", lw=0, label=labels[1])
-    # Imaging corrected
-    #ax.fill_between(x=nominal_b, y1=imaging_corrected_upper, y2=imaging_corrected_lower, alpha=.4, ls="", lw=0, label=labels[2])
-    # Cross-term corrected
-    #ax.fill_between(x=nominal_b, y1=crossterm_corrected_upper, y2=crossterm_corrected_lower, alpha=.4, ls="", lw=0, label=labels[3])
-
-    #ax.fill_between(x=nominal_b, y1=uncorrected_upper, y2=uncorrected_lower, alpha=1, ls="-", color="tab:blue", facecolor="None", lw=lw)
-    #ax.fill_between(x=nominal_b, y1=imaging_corrected_upper, y2=imaging_corrected_lower, alpha=1, ls="-", color="tab:orange", facecolor="None", lw=lw)
-    #ax.fill_between(x=nominal_b, y1=crossterm_corrected_upper, y2=crossterm_corrected_lower, alpha=1, ls="-", color="tab:green", facecolor="None", lw=lw)
-
-    # Fill between imaging and uncorrected
-    #axs[0].fill_between(x=nominal_b, y1=uncorrected_lower, y2=imaging_corrected_lower, alpha=0.2, color="red", ls="")
-
-    #axs[0].fill_between(x=nominal_b, y1=signals_upper, y2=signals_lower, alpha=0.2, color="red", label="Uncorrected")
 
     # Create an inset
     axins = ax.inset_axes([0.11, 0.1, 0.3, 0.4], xlim=(-10, 80), ylim=(0.83,1.02))
     axins.plot(nominal_b, simulate_pulse_sequences.ivim_signal(nominal_b, Dstar=0.02), color="black", linewidth=1.5, ls=(0, (2,5)))
-    #axins.plot(nominal_b, uncorrected_lower, ls="")
-    #axins.plot(nominal_b, uncorrected_upper, ls="")
-    #axins.plot(nominal_b, powder_averaged_signals, ls="-", color="tab:blue", alpha=1, lw=1)
-    #axins.plot(nominal_b, imaging_corrected_lower, ls="")
-    #axins.plot(nominal_b, imaging_corrected_upper, ls="")
-    #axins.plot(nominal_b, crossterm_corrected_lower, ls="")
-    #axins.plot(nominal_b, crossterm_corrected_upper, ls="")
 
     # Uncorrected
     axins.fill_between(x=nominal_b, y1=uncorrected_upper, y2=uncorrected_lower, alpha=.3, ls="", lw=0, facecolor="tab:blue")
-    # Imaging corrected
-    #axins.fill_between(x=nominal_b, y1=imaging_corrected_upper, y2=imaging_corrected_lower, alpha=.3, ls="", lw=0, facecolor="tab:orange")
-    # Cross-term corrected
-    #axins.fill_between(x=nominal_b, y1=crossterm_corrected_upper, y2=crossterm_corrected_lower, alpha=.3, ls="", lw=0, facecolor="tab:green")
-
-    #axins.fill_between(x=nominal_b, y1=uncorrected_upper, y2=uncorrected_lower, alpha=1, ls="-", color="tab:blue", facecolor="None", lw=lw)
-    #axins.fill_between(x=nominal_b, y1=imaging_corrected_upper, y2=imaging_corrected_lower, alpha=1, ls="-", color="tab:orange", facecolor="None", lw=lw)
-    #axins.fill_between(x=nominal_b, y1=crossterm_corrected_upper, y2=crossterm_corrected_lower, alpha=1, ls="-", color="tab:green", facecolor="None", lw=lw)
 
     if plot_title == "Well-designed sequence":
         axins.annotate("Crushers on", (30, 0.99), fontsize=11)
@@ -476,8 +411,6 @@ def fig1_sequence(ax_column, sequence_design, plot_title, legend_flag=False, lab
     sequence.get_rf(optimize=True, start_time=sequence.t_180)
     sequence.get_optimal_TE(start_time=3e-3)
     sequence.set_b_by_scaling_amplitude(800e6, include_imaging=False, include_cross_terms=False)
-    #print(f"Sequence b-value: {sequence.get_b(start_time=3e-3)*1e-6:.1f} s/mm2")
-    #sequence.plot_gwf()
 
     axins_sequence = sequence_ax #ax.inset_axes([0.53, 0.58, 0.45, 0.4], ylim=(-33e-3, 33e-3))
     gwf_array = sequence.gwf[:40000,:]
@@ -529,13 +462,15 @@ def fig1_sequence(ax_column, sequence_design, plot_title, legend_flag=False, lab
 
     if sequence_design == "optimal":
         axins_sequence.annotate("Crushers only when needed", (15000,-15e-3), fontsize=11)
-        #axins_sequence.arrow(14500, -10e-3, -2500, 8e-3, width=.5e-3, color="black", shape="full", length_includes_head=True)
         axins_sequence.annotate(text="", xy=(14800, -10e-3), xytext=(12000, -2e-3), arrowprops=dict(arrowstyle="<-"))
 
 
         axins_sequence.annotate("Immediate rewinding", (7000,-33e-3), fontsize=11)
-        #axins_sequence.arrow(6500, -25e-3, -3800, 10e-3, width=.5e-3, color="black", shape="full", length_includes_head=True, head_length=800, head_width=3e-3)
         axins_sequence.annotate(text="", xy=(6500, -25e-3), xytext=(2500, -15e-3), arrowprops=dict(arrowstyle="<-"))
+
+    if sequence_design == "bad":
+        axins_sequence.annotate("Slice rewinder\nmerged with crusher", xy=(16000, 33e-3), fontsize=11)
+        axins_sequence.annotate(text="", xy=(15500, 41e-3), xytext=(10700, 25e-3), arrowprops=dict(arrowstyle="<-"), annotation_clip=False)
 
 
     axins_sequence.set_ylim(-33e-3, 33e-3)
@@ -556,17 +491,9 @@ fig1_subplot(cross_terms_bad, fig=fig, ax_column=0, plot_title="Poor sequence de
 fig1_subplot(cross_terms_optimal, fig=fig, ax_column=1, plot_title="Well-designed sequence", sequence_design="optimal", labels=labels2)
 
 plot_powder_average(powder_average_xyz_bad, axs[1,0], "[x, y, z] average",(0, (5,5)))
-#plot_powder_average(powder_average_xy_z_bad, axs[1,0], "xy-z", "dotted")
-#plot_powder_average(powder_average_GE_6_bad, axs[1,0], "6 dir", "dotted")
-#plot_powder_average(powder_average_filip_bad, axs[1,0], "6 dir Filip", "dotted")
-#plot_powder_average(powder_average_GE_16_bad, axs[1,0], "16 dir", "-")
 plot_powder_average(powder_average_xyz_antipodal_bad, axs[1,0], "[x, y, z, -x, -y, -z] average", "-")
 
 plot_powder_average(powder_average_xyz_optimal, axs[1,1], "",(0, (5,5)))
-#plot_powder_average(powder_average_xy_z_optimal, axs[1,1], "xy-z", "")
-#plot_powder_average(powder_average_GE_6_optimal, axs[1,1], "", "dotted")
-#plot_powder_average(powder_average_filip_optimal, axs[1,1], "6 dir Filip", "dotted")
-#plot_powder_average(powder_average_GE_16_optimal, axs[1,1], "", "-")
 plot_powder_average(powder_average_xyz_antipodal_optimal, axs[1,1], "", "-")
 
 axs[1,0].set_ylabel("Signal")
