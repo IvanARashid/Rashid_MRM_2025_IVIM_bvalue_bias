@@ -30,7 +30,7 @@ nominal_bvalues = [800, 700, 600, 500, 400, 300, 200, 175, 150, 125, 100, 90, 80
 save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\PhD1_IVIM_bvalue_bias"
 
 # Path to folder where figures will be saved
-fig_save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\figures"
+fig_save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\MRM_submission\revision 1\figure drafts"
 
 folder_best_case = r"simulation_data\figs_1_to_4\optimal_allCrushers_onlyCrushWhenNeeded_sequence"
 folder_worst_case = r"simulation_data\figs_1_to_4\allCrushers_sequence"
@@ -509,7 +509,7 @@ fig.text(0.04, 0.95, "(a)", fontsize=18)
 fig.text(0.51, 0.95, "(b)", fontsize=18)
 
 fig.tight_layout()
-#fig.savefig(os.path.join(fig_save_path, "Figure_1.pdf"), bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_1.tiff"), dpi=1200, bbox_inches="tight")
 # %% Figure 2
 
 xy = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 3e-3, 3.5e-3, 4e-3])
@@ -830,7 +830,7 @@ fig.text(-0.02, 0.95, "(a)", fontsize="18")
 fig.text(-0.02, 0.5, "(b)", fontsize="18")
 #fig.suptitle("Relative b-value deviation vs. isotropic resolution", x=.53, y=1.02)
 
-#fig.savefig(os.path.join(fig_save_path, "Figure_2.pdf"), bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_2.tiff"), dpi=260, bbox_inches="tight")
 # %% Figure 3
 
 z = np.array([2e-3, 3e-3, 4e-3, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 10e-3])
@@ -996,7 +996,7 @@ fig.text(0, 0.9525, "(a)", fontsize=18)
 fig.text(0, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
 
-#fig.savefig(os.path.join(fig_save_path, "Figure_3.pdf"), bbox_inches="tight")
+fig.savefig(os.path.join(fig_save_path, "Figure_3.tiff"), dpi=280, bbox_inches="tight")
 
 # %% Figure 4
 
@@ -1156,4 +1156,4 @@ fig.text(0, 0.9525, "(a)", fontsize=18)
 fig.text(0, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
 
-#fig.savefig(os.path.join(fig_save_path, "Figure_4.pdf"), bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_4.tiff"), dpi=280, bbox_inches="tight")
