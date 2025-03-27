@@ -639,16 +639,19 @@ grid.cbar_axes[2].colorbar(D)
 # %% Error heatmaps as subplots
 
 cbar_aspect = 10
-cbar_shrink = 0.72
+cbar_shrink = 0.9
 aspect = 0.26
 factor = 100 # To show relative errors as percentages
+
+cbar_upper_anchor = (0.5, 2.5)
+cbar_pad = -.1
 
 colormap = "BrBG"
 fig, axs = plt.subplots(ncols=3, nrows=2, figsize=(9,6), sharex=True)
 
 norm = colors.TwoSlopeNorm(vmin=-0.2*factor, vcenter=0.*factor, vmax=1.0*factor)
 f = axs[0,0].imshow((f_f_heatmap_estimates_worst-f_f_heatmap_truth)/f_f_heatmap_truth*factor, origin="lower", cmap=colormap, norm=norm, aspect=aspect, interpolation="none")
-cbar = fig.colorbar(f, ax=axs[0,0], location="top", shrink=cbar_shrink, aspect=cbar_aspect)
+cbar = fig.colorbar(f, ax=axs[0,0], location="top", shrink=cbar_shrink, aspect=cbar_aspect, pad=cbar_pad, anchor=cbar_upper_anchor)
 cbar.set_ticks([-0.2*factor, 0, 1*factor])
 cbar.set_label("Relative $f$ error [\%]")
 axs[0,0].set_ylabel("$f$ [\%]")
@@ -658,7 +661,7 @@ axs[0,0].set_yticklabels(np.array([0, 10, 20, 30]))
 
 norm = colors.TwoSlopeNorm(vmin=-1.0*factor, vcenter=0.*factor, vmax=1.0*factor)
 Dstar = axs[0,1].imshow((Dstar_Dstar_heatmap_estimates_worst-Dstar_Dstar_heatmap_truth)/Dstar_Dstar_heatmap_truth*factor, origin="lower", norm=norm, cmap=colormap, aspect=aspect, interpolation="none")
-cbar = fig.colorbar(Dstar, ax=axs[0,1], location="top", shrink=cbar_shrink, aspect=cbar_aspect)
+cbar = fig.colorbar(Dstar, ax=axs[0,1], location="top", shrink=cbar_shrink, aspect=cbar_aspect, pad=cbar_pad, anchor=cbar_upper_anchor)
 cbar.set_ticks(np.array([-1, -0.5, 0, 0.5, 1])*factor)
 cbar.set_label("Relative $D^*$ error [\%]")
 axs[0,1].set_ylabel("$D^*$ [µm$^2$/ms]")
@@ -667,7 +670,7 @@ axs[0,1].set_yticklabels([5, 10, 30, 50])
 
 norm = colors.TwoSlopeNorm(vmin=-0.1*factor, vcenter=0.*factor, vmax=0.1*factor)
 D = axs[0,2].imshow((D_D_heatmap_estimates_worst-D_D_heatmap_truth)/D_D_heatmap_truth*factor, origin="lower", norm=norm, cmap=colormap, aspect=aspect, interpolation="none")
-cbar = fig.colorbar(D, ax=axs[0,2], location="top", shrink=cbar_shrink, aspect=cbar_aspect)
+cbar = fig.colorbar(D, ax=axs[0,2], location="top", shrink=cbar_shrink, aspect=cbar_aspect, pad=cbar_pad, anchor=cbar_upper_anchor)
 cbar.set_ticks(np.array([-0.1, -0.05, 0, 0.05, 0.1])*factor)
 cbar.set_label("Relative $D$ error [\%]")
 axs[0,2].set_ylabel("$D$ [µm$^2$/ms]")
@@ -680,6 +683,9 @@ f = axs[1,0].imshow((f_f_heatmap_estimates_best-f_f_heatmap_truth)/f_f_heatmap_t
 #cbar = fig.colorbar(f, ax=axs[1,0], location="top", shrink=cbar_shrink, aspect=cbar_aspect)
 #cbar.set_ticks([-0.2*factor, 0, 1*factor])
 #cbar.set_label("Relative $f$ error [\%]")
+cbar = fig.colorbar(f, ax=axs[1,0], location="top", shrink=1e-5, aspect=1e-5, pad=cbar_pad)
+cbar.outline.set_visible(False)
+cbar.set_ticks([])
 axs[1,0].set_ylabel("$f$ [\%]")
 axs[1,0].set_yticks([0, 15, 32, 49])
 axs[1,0].set_yticklabels(np.array([0, 10, 20, 30]))
@@ -689,6 +695,9 @@ Dstar = axs[1,1].imshow((Dstar_Dstar_heatmap_estimates_best-Dstar_Dstar_heatmap_
 #cbar = fig.colorbar(Dstar, ax=axs[1,1], location="top", shrink=cbar_shrink, aspect=cbar_aspect)
 #cbar.set_ticks(np.array([-1, -0.5, 0, 0.5, 1])*factor)
 #cbar.set_label("Relative $D^*$ error [\%]")
+cbar = fig.colorbar(Dstar, ax=axs[1,1], location="top", shrink=1e-5, aspect=1e-5, pad=cbar_pad)
+cbar.outline.set_visible(False)
+cbar.set_ticks([])
 axs[1,1].set_ylabel("$D^*$ [µm$^2$/ms]")
 axs[1,1].set_yticks([0, 5, 27, 49])
 axs[1,1].set_yticklabels([5, 10, 30, 50])
@@ -696,6 +705,9 @@ axs[1,1].set_yticklabels([5, 10, 30, 50])
 norm = colors.TwoSlopeNorm(vmin=-0.1*factor, vcenter=0.*factor, vmax=0.1*factor)
 D = axs[1,2].imshow((D_D_heatmap_estimates_best-D_D_heatmap_truth)/D_D_heatmap_truth*factor, origin="lower", norm=norm, cmap=colormap, aspect=aspect, interpolation="none")
 #cbar = fig.colorbar(D, ax=axs[1,2], location="top", shrink=cbar_shrink, aspect=cbar_aspect)
+cbar = fig.colorbar(D, ax=axs[1,2], location="top", shrink=1e-5, aspect=1e-5, pad=cbar_pad)
+cbar.outline.set_visible(False)
+cbar.set_ticks([])
 #cbar.set_ticks(np.array([-0.1, -0.05, 0., 0.05, 0.1])*factor)
 #cbar.set_label("Relative $D$ error [\%]")
 axs[1,2].set_ylabel("$D$ [µm$^2$/ms]")
