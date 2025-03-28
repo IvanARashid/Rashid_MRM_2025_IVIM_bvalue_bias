@@ -10,14 +10,14 @@ import copy
 save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\bvalue simulations\20241101"
 
 uvec_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\bvalue simulations\bvecs"
-uvec_fname = "froeling_200.bvec"
+uvec_fname = "xyz.bvec"
 uvec_file = os.path.join(uvec_path, uvec_fname)
 
 resolution_lst = np.round(np.linspace(1,4,13)*1e-3, decimals=7)
 
 sequence_config = {"xres" : 2e-3,
                 "yres" : 2e-3,
-                "zres" : 2e-3,
+                "zres" : 4e-3,
                 "crushers" : True,
                 "optimal" : False,
                 "all_crushers" : True,
@@ -57,7 +57,6 @@ def main1(sequence_config=sequence_config, save_path=save_path, uvec_file=uvec_f
     for resolution in resolution_lst:
         sequence_config["xres"] = resolution
         sequence_config["yres"] = resolution
-        sequence_config["zres"] = resolution
         sequence_configs.append(copy.deepcopy(sequence_config))
 
 
@@ -112,7 +111,6 @@ def main2(sequence_config=sequence_config, save_path=save_path, uvec_file=uvec_f
     for resolution in resolution_lst:
         sequence_config["xres"] = resolution
         sequence_config["yres"] = resolution
-        sequence_config["zres"] = resolution
         sequence_configs.append(copy.deepcopy(sequence_config))
 
 
@@ -160,7 +158,6 @@ def main3(sequence_config=sequence_config, save_path=save_path, uvec_file=uvec_f
     for resolution in resolution_lst:
         sequence_config["xres"] = resolution
         sequence_config["yres"] = resolution
-        sequence_config["zres"] = resolution
         sequence_configs.append(copy.deepcopy(sequence_config))
 
 
