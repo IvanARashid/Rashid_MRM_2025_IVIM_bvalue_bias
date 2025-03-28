@@ -595,45 +595,6 @@ for i in range(D_range.shape[0]):
     D_D_heatmap_truth[i, :] = D_range[i]*1000
 
 
-# %% Error heatmaps as imagegrid
-
-colormap = "BrBG"
-aspect = 0.2
-fig = plt.figure(figsize=(8,4))
-grid = ImageGrid(fig, 111,
-                nrows_ncols=(2,3),
-                axes_pad=0.4,
-                label_mode="L",
-                cbar_location="top",
-                cbar_mode="edge",
-                cbar_pad=0.3,
-                cbar_size="10%",
-                share_all=False)
-
-#f = grid[0].imshow(np.flip(f_f_heatmap_truth, axis=0))
-#f = grid[0].imshow(np.flip((f_f_heatmap_estimates-f_f_heatmap_truth)/f_f_heatmap_truth, axis=0), cmap=colormap, vmin=-0.25, vmax=0.25, aspect=aspect, interpolation="bilinear")
-#f = grid[0].imshow((f_f_heatmap_estimates-f_f_heatmap_truth)/f_f_heatmap_truth, origin="lower", cmap=colormap, clim=(-0.2, 1.0), norm=MidpointNormalize(midpoint=0.0, vmin=-0.2, vmax=1.0), aspect=aspect, interpolation="bilinear")
-#norm=colors.TwoSlopeNorm(vmin=vmin-1e-5, vcenter=0., vmax=vmax+1e-5)
-norm=colors.TwoSlopeNorm(vmin=-0.2, vcenter=0., vmax=1.0)
-#f = grid[0].imshow((f_f_heatmap_estimates-f_f_heatmap_truth)/f_f_heatmap_truth, origin="lower", cmap=colormap, clim=(-0.2, 1.0), norm=MidpointNormalize(midpoint=0.0, vmin=-0.2, vmax=0.2), aspect=aspect, interpolation="bilinear")
-f = grid[0].imshow((f_f_heatmap_estimates-f_f_heatmap_truth)/f_f_heatmap_truth, origin="lower", cmap=colormap, norm=norm, aspect=aspect, interpolation="none")
-cax = grid.cbar_axes[0].colorbar(f)
-cax.set_ticks([-0.2, 0, 1])
-grid[0].set_ylabel("Ground truth $f$ [\%]")
-grid[0].set_yticks([0, 15, 32, 49])
-grid[0].set_yticklabels([0, 10, 20, 30])
-
-#Dstar = grid[1].imshow(np.flip((Dstar_Dstar_heatmap_estimates-Dstar_Dstar_heatmap_truth)/Dstar_Dstar_heatmap_truth, axis=0), vmin=0.1, vmax=0.7, aspect=aspect)
-Dstar = grid[1].imshow((Dstar_Dstar_heatmap_estimates-Dstar_Dstar_heatmap_truth)/Dstar_Dstar_heatmap_truth, origin="lower", vmin=0.1, vmax=1.0, aspect=aspect, interpolation="none")
-cax = grid.cbar_axes[1].colorbar(Dstar)
-cax.set_ticks([0.1, 1])
-grid[1].set_ylabel("Ground truth $D^*$ [µm$^2$/ms]")
-grid[1].set_yticks([0, 5, 27, 49])
-grid[1].set_yticklabels([5, 10, 30, 50])
-
-#D = grid[2].imshow(np.flip((D_D_heatmap_estimates-D_D_heatmap_truth)/D_D_heatmap_truth, axis=0), aspect=aspect)
-D = grid[2].imshow((D_D_heatmap_estimates-D_D_heatmap_truth)/D_D_heatmap_truth, origin="lower", aspect=aspect, interpolation="bilinear")
-grid.cbar_axes[2].colorbar(D)
 
 
 # %% Error heatmaps as subplots
@@ -731,6 +692,6 @@ fig.text(0.01, 0.95, "(a)", fontsize=18)
 fig.text(0.01, 0.47, "(b)", fontsize=18)
 fig.tight_layout()
 
-#fig.savefig(os.path.join(fig_save_path, "Figure_reviewer_3.tiff"), dpi=300, bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_7.tiff"), dpi=300, bbox_inches="tight")
 
 # %%
