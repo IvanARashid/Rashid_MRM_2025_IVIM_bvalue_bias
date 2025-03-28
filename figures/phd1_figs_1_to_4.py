@@ -510,7 +510,7 @@ fig.text(0.51, 0.95, "(b)", fontsize=18)
 
 fig.tight_layout()
 #fig.savefig(os.path.join(fig_save_path, "Figure_1.tiff"), dpi=1200, bbox_inches="tight")
-# %% Figure 2
+# %% Figure 4
 
 xy = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 3e-3, 3.5e-3, 4e-3])
 z = xy
@@ -830,8 +830,8 @@ fig.text(-0.02, 0.95, "(a)", fontsize="18")
 fig.text(-0.02, 0.5, "(b)", fontsize="18")
 #fig.suptitle("Relative b-value deviation vs. isotropic resolution", x=.53, y=1.02)
 
-#fig.savefig(os.path.join(fig_save_path, "Figure_2.tiff"), dpi=260, bbox_inches="tight")
-# %% Figure 3
+#fig.savefig(os.path.join(fig_save_path, "Figure_4.tiff"), dpi=260, bbox_inches="tight")
+# %% Figure 5
 
 z = np.array([2e-3, 3e-3, 4e-3, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3, 10e-3])
 xy = np.array([2e-3 for i in range(len(z))])
@@ -891,7 +891,7 @@ D_reference = np.array([1 for i in range(len(z))])
 #linestyles = [ls_nominal, ls_blue, ls_orange, "-", "-"]
 linestyles = [ls_nominal, ls_blue, ls_orange, (0, (7,7)), (7, (7,7))]
 # Plot results
-fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(10,6), sharex=True, tight_layout=True)
+fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(10,5.8), sharex=True, tight_layout=True)
 lw = 1.5
 lw_straight = 1
 alpha_area = 0.3
@@ -995,10 +995,11 @@ handles, labels = axs[0,0].get_legend_handles_labels()
 fig.text(0, 0.9525, "(a)", fontsize=18)
 fig.text(0, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
+fig.tight_layout()
 
-fig.savefig(os.path.join(fig_save_path, "Figure_3.tiff"), dpi=280, bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_5.tiff"), dpi=280, bbox_inches="tight")
 
-# %% Figure 4
+# %% Figure 6
 
 xy = np.array([1e-3, 1.25e-3, 1.5e-3, 1.75e-3, 2e-3, 2.25e-3, 2.5e-3, 2.75e-3, 3e-3, 3.25e-3, 3.5e-3, 3.75e-3, 4e-3])
 z = np.array([4e-3 for i in range(len(xy))])
@@ -1152,8 +1153,11 @@ D_pwd_avg_lines = [D_reference, D_u_xyz_best, D_i_xyz_best, D_u_xyz_antipodal_be
 fig_3_inset(axs[1,2], xy*1e3, pwd_avg_lines=D_pwd_avg_lines, linestyles=linestyles, colors=colors, xlim=(1, 2), ylim=(0.995, 1.005))
 
 fig.legend(loc=(0.015, -.005), ncols=5, frameon=False)
-fig.text(0, 0.9525, "(a)", fontsize=18)
-fig.text(0, 0.5, "(b)", fontsize=18)
+fig.text(-0.02, 0.9525, "(a)", fontsize=18)
+fig.text(-0.02, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
+fig.tight_layout()
 
-#fig.savefig(os.path.join(fig_save_path, "Figure_4.tiff"), dpi=280, bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_6.tiff"), dpi=280, bbox_inches="tight")
+
+# %%
