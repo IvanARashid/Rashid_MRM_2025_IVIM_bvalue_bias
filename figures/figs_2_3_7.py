@@ -489,7 +489,7 @@ fig.text(0, 1, "(a)", fontsize=18)
 fig.text(0.515, 1, "(b)", fontsize=18)
 fig.tight_layout()
 
-#fig.savefig(os.path.join(fig_save_path, "Figure_reviewer_2.tiff"), dpi=300, bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_2.tiff"), dpi=300, bbox_inches="tight")
 
 # %% Error heatmaps for nominal xyz analysis 
 
