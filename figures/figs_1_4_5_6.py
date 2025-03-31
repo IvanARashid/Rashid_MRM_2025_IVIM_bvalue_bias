@@ -621,7 +621,7 @@ def plot_3d_uvec_inset_old(fig, position, angles):
     ax.quiver(0, 0, 0, *uvec_min, color="black", alpha=.6)
 
     ax.text(-1, -.7, 1.4, f"Max pos deviation $\mathbf g_\mathrm d$ dir\n[{uvec_max[0]:.2f}, {uvec_max[1]:.2f}, {uvec_max[2]:.2f}]", color="tab:red", fontsize=10)
-    ax.text(-1.1, -.7, -1.7, f"Max neg deviation $\mathbf g_\mathrm d$ dir\n[{uvec_min[0]:.2f}, {uvec_min[1]:.2f}, {uvec_min[2]:.2f}]", color="black", alpha=.6, fontsize=10)
+    ax.text(-1.1, -.7, -1.7, f"Max neg deviation $\mathbf g_\mathrm d$ dir\n[{uvec_min[0]:.2f}, {uvec_min[1]:.2f}, {uvec_min[2]:.2f}]", color="black", alpha=1, fontsize=10)
 
     ax.text(1.1, 0, -.1, "x")
     ax.text(0, -1.3, -.15, "y")
@@ -684,10 +684,10 @@ def plot_3d_uvec_inset(fig, position, angles):
 
     # Plot the uvecs
     ax.quiver(0, 0, 0, *uvec_max, color="tab:red")
-    ax.quiver(0, 0, 0, *uvec_min, color="black", alpha=.6)
+    ax.quiver(0, 0, 0, *uvec_min, color="black", alpha=1)
 
     ax.text(-1, -.7, 1.4, f"Max pos deviation $\mathbf g_\mathrm d$ dir\n[{uvec_max[0]:.2f}, {uvec_max[1]:.2f}, {uvec_max[2]:.2f}]", color="tab:red", fontsize=10)
-    ax.text(-1.1, -.7, -1.7, f"Max neg deviation $\mathbf g_\mathrm d$ dir\n[{uvec_min[0]:.2f}, {uvec_min[1]:.2f}, {uvec_min[2]:.2f}]", color="black", alpha=.6, fontsize=10)
+    ax.text(-1.1, -.7, -1.7, f"Max neg deviation $\mathbf g_\mathrm d$ dir\n[{uvec_min[0]:.2f}, {uvec_min[1]:.2f}, {uvec_min[2]:.2f}]", color="black", alpha=1, fontsize=10)
 
     ax.text(1.1, 0, -.1, "x")
     ax.text(0, -1.3, -.15, "y")
