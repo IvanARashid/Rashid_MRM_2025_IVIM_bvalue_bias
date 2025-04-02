@@ -32,8 +32,8 @@ save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients
 # Path to folder where figures will be saved
 fig_save_path = r"C:\Users\ivan5\Box\PhD\Articles\PhD1 - IVIM incl imaging gradients\MRM_submission\revision 1\figure drafts"
 
-folder_best_case = r"simulation_data\figs_1_to_4\optimal_allCrushers_onlyCrushWhenNeeded_sequence"
-folder_worst_case = r"simulation_data\figs_1_to_4\allCrushers_sequence"
+folder_best_case = r"simulation_data\figs_1_4_5_6\optimal_allCrushers_onlyCrushWhenNeeded_sequence"
+folder_worst_case = r"simulation_data\figs_1_4_5_6\allCrushers_sequence"
 
 path_best = os.path.join(save_path, folder_best_case)
 path_worst = os.path.join(save_path, folder_worst_case)
@@ -1158,6 +1158,6 @@ fig.text(-0.02, 0.5, "(b)", fontsize=18)
 plt.margins(y=2)
 fig.tight_layout()
 
-#fig.savefig(os.path.join(fig_save_path, "Figure_6.tiff"), dpi=280, bbox_inches="tight")
+#fig.savefig(os.path.join(fig_save_path, "Figure_6.tiff"), dpi=275, bbox_inches="tight")
 
 # %%
